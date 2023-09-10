@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/button.uss?fileID=7433441132597879392&amp;guid=134c212e2d8af294ab3e8d2ece2ed6cb&amp;type=3#button" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; flex-basis: auto; flex-shrink: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
+        <ui:VisualElement name="Background" style="flex-grow: 1; position: absolute; width: 100%; height: 100%;">
+            <ui:VisualElement name="Image" style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/MenuBackgrounds/photo_2023-09-10_14-12-32.jpg?fileID=2800000&amp;guid=90ecb51ea44035b4ba00cc82aa3b9c69&amp;type=3#photo_2023-09-10_14-12-32&apos;); background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); -unity-background-scale-mode: scale-and-crop; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; transform-origin: center; visibility: visible; overflow: visible; display: flex; opacity: 1; position: relative; width: 100%; height: 100%; -unity-slice-scale: 0;" />
+            <ui:VisualElement name="Filter" style="flex-grow: 1; position: absolute; background-color: rgba(0, 0, 0, 0.76); flex-basis: 100%; left: auto; top: auto; height: 100%; width: 100%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MenuContainer" style="flex-grow: 1; min-width: auto; min-height: auto; width: 50%; -unity-text-align: upper-center;">
+            <ui:Label tabindex="-1" text="УГАДАЙ ПЕРСОНАЖА ПО НОЖКАМ" parse-escape-sequences="false" display-tooltip-when-elided="false" enable-rich-text="true" usage-hints="None" focusable="false" name="HeadText" style="-unity-background-image-tint-color: rgb(255, 255, 255); -unity-background-scale-mode: stretch-to-fill; color: rgb(255, 255, 255); font-size: 35%; -unity-text-align: middle-center; height: auto; width: 100%; white-space: normal; opacity: 1; min-width: 0; min-height: 0; text-overflow: clip;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
