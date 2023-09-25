@@ -3336,6 +3336,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052470478}
   m_CullTransparentMesh: 1
+--- !u!1 &1073907122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073907123}
+  - component: {fileID: 1073907124}
+  m_Layer: 0
+  m_Name: Network
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073907123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073907122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 725.94165, y: 419.2329, z: 6.46906}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073907124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073907122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d729a886580b44682aa47a3dd6b365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customDropDown: {fileID: 1295396347}
 --- !u!1 &1073963137
 GameObject:
   m_ObjectHideFlags: 0
@@ -4003,7 +4048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Genshin Impact
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4030,7 +4075,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 55
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4230,16 +4275,74 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Genshin Impact
-      m_Image: {fileID: 0}
-    - m_Text: Honkai Impact
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
   BottomButtonsAnimator:
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
+  - {fileID: 1675902954}
+  - {fileID: 1375080730}
   - {fileID: 1675902954}
   - {fileID: 1375080730}
   - {fileID: 1675902954}
@@ -7069,3 +7172,4 @@ SceneRoots:
   - {fileID: 1570594813}
   - {fileID: 868910948}
   - {fileID: 360167269}
+  - {fileID: 1073907123}
