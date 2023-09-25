@@ -10,7 +10,7 @@ public class CustomDropDown : TMP_Dropdown
 {
     // private Animator _startButtonAnimator;
 
-    private List<Animator> _bottomButtonsAnimator = new();
+    public List<Animator> BottomButtonsAnimator = new();
 
     protected override void Awake()
     {
@@ -23,7 +23,7 @@ public class CustomDropDown : TMP_Dropdown
         
             if (child.name.Contains("Button"))
             {
-                _bottomButtonsAnimator.Add(gameObject.transform.parent.GetChild(i).gameObject
+                BottomButtonsAnimator.Add(gameObject.transform.parent.GetChild(i).gameObject
                     .GetComponent<Animator>());
             }
         }
@@ -31,7 +31,7 @@ public class CustomDropDown : TMP_Dropdown
 
     protected override GameObject CreateDropdownList(GameObject template)
     {
-        foreach (var buttonAnimator in _bottomButtonsAnimator)
+        foreach (var buttonAnimator in BottomButtonsAnimator)
         {
             buttonAnimator.SetBool("DropDownOpened", true);
         }
@@ -41,7 +41,7 @@ public class CustomDropDown : TMP_Dropdown
 
     protected override void DestroyDropdownList(GameObject dropdownList)
     {
-        foreach (var buttonAnimator in _bottomButtonsAnimator)
+        foreach (var buttonAnimator in BottomButtonsAnimator)
         {
             buttonAnimator.SetBool("DropDownOpened", false);
         }
