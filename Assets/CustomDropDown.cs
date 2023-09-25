@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class CustomDropDown : TMP_Dropdown
 {
-    private Animator _startButtonAnimator;
+    // private Animator _startButtonAnimator;
+
+    private List<Animator> _bottomButtonsAnimator = new();
 
     protected override void Awake()
     {
@@ -16,30 +20,32 @@ public class CustomDropDown : TMP_Dropdown
         for (int i = 0; i < gameObject.transform.parent.childCount; i++)
         {
             var child = gameObject.transform.parent.GetChild(i);
-
-            if (child.gameObject == gameObject)
+        
+            if (child.name.Contains("Button"))
             {
-                _startButtonAnimator = gameObject.transform.parent.GetChild(i + 1).gameObject.GetComponent<Animator>();
-                break;
+                _bottomButtonsAnimator.Add(gameObject.transform.parent.GetChild(i).gameObject
+                    .GetComponent<Animator>());
             }
-
-            // if (myIndex != -1)
-            // {
-            //     _startButton = child.gameObject;
-            //     break;
-            // }
         }
     }
 
     protected override GameObject CreateDropdownList(GameObject template)
     {
-        _startButtonAnimator.SetBool("DropDownOpened", true);
+        foreach (var buttonAnimator in _bottomButtonsAnimator)
+        {
+            buttonAnimator.SetBool("DropDownOpened", true);
+        }
+
         return base.CreateDropdownList(template);
     }
 
     protected override void DestroyDropdownList(GameObject dropdownList)
     {
-        _startButtonAnimator.SetBool("DropDownOpened", false);
+        foreach (var buttonAnimator in _bottomButtonsAnimator)
+        {
+            buttonAnimator.SetBool("DropDownOpened", false);
+        }
+
         base.DestroyDropdownList(dropdownList);
     }
 }
