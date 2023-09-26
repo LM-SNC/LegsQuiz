@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Network : MonoBehaviour
+public class LegsQuizApi : MonoBehaviour
 {
-    [SerializeField] private CustomDropDown _customDropDown;
-    [SerializeField] private GameObject _table;
-
     void Start()
     {
         StartCoroutine(GetGames());
