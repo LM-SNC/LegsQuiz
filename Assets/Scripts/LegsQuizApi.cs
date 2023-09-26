@@ -1,23 +1,32 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using DefaultNamespace;
-using TMPro;
+using Reflex.Core;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LegsQuizApi : MonoBehaviour
+public class LegsQuizApi : IStartable
 {
-    void Start()
+    public LegsQuizApi()
     {
-        StartCoroutine(GetGames());
-        StartCoroutine(GetPlayers());
+        Debug.Log("HUI12345");
+    }
+    public enum Request
+    {
+        Players = 0,
+        Games = 1
     }
 
-    IEnumerator GetGames()
+    private Dictionary<Request, string> _apiUrls = new()
     {
-        using var www = UnityWebRequest.Get(
-            "https://legsquiz.hentach.ru/games");
-        yield return www.SendWebRequest();
+        { Request.Players, "https://legsquiz.hentach.ru/players" },
+        { Request.Games, "https://legsquiz.hentach.ru/games" }
+    };
+
+    public async Awaitable<T> GetData<T>(Request request, string condition = "")
+    {
+        using var www = UnityWebRequest.Get(_apiUrls[request] + condition);
+
+        await www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -26,49 +35,14 @@ public class LegsQuizApi : MonoBehaviour
         else
         {
             Debug.Log(www.downloadHandler.text);
-            var json = JsonUtility.FromJson<Games>(www.downloadHandler.text);
-
-
-            var options = new List<string>();
-
-            foreach (var value in json.value)
-            {
-                options.Add(value.name);
-            }
-
-            _customDropDown.AddOptions(options);
+            return JsonUtility.FromJson<T>(www.downloadHandler.text);
         }
+
+        return default;
     }
 
-    IEnumerator GetPlayers()
+    public void Start()
     {
-        using var www = UnityWebRequest.Get(
-            "https://legsquiz.hentach.ru/players");
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log(www.downloadHandler.text);
-            var json = JsonUtility.FromJson<Players>(www.downloadHandler.text);
-
-            var template = _table.gameObject.transform.Find("Template");
-            foreach (var player in json.value)
-            {
-                var newItem = Instantiate(template, _table.transform, true);
-                newItem.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
-                newItem.GetChild(1).GetComponent<TMP_Text>().SetText(player.answersCount.ToString());
-                
-                newItem.gameObject.SetActive(true);
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        
     }
 }
