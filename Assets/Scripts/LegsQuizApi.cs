@@ -1,30 +1,21 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Reflex.Core;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class LegsQuizApi : IStartable
 {
-    public LegsQuizApi()
+    private Dictionary<Type, string> _apiUrls = new()
     {
-        Debug.Log("HUI12345");
-    }
-    public enum Request
-    {
-        Players = 0,
-        Games = 1
-    }
-
-    private Dictionary<Request, string> _apiUrls = new()
-    {
-        { Request.Players, "https://legsquiz.hentach.ru/players" },
-        { Request.Games, "https://legsquiz.hentach.ru/games" }
+        { typeof(Players), "https://legsquiz.hentach.ru/players" },
+        { typeof(Games), "https://legsquiz.hentach.ru/games" }
     };
 
-    public async Awaitable<T> GetData<T>(Request request, string condition = "")
+    public async Awaitable<T> GetData<T>(string condition = "")
     {
-        using var www = UnityWebRequest.Get(_apiUrls[request] + condition);
+        using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
 
         await www.SendWebRequest();
 
@@ -43,6 +34,5 @@ public class LegsQuizApi : IStartable
 
     public void Start()
     {
-        
     }
 }

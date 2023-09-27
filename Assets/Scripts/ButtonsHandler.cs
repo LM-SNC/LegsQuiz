@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonsHandler : MonoBehaviour, IStartable
 {
-    private List<(string buttonName, Action<Button, Canvas> action)> _handlers = new();
+    private List<(string buttonName, Func<Button, Canvas, Awaitable> action)> _handlers = new();
 
     public void Start()
     {
@@ -17,7 +17,7 @@ public class ButtonsHandler : MonoBehaviour, IStartable
 
             Debug.Log($"Add subscriber for {button.name}");
 
-            button.onClick.AddListener((() =>
+            button.onClick.AddListener((async () =>
             {
                 Debug.Log($"Call :: {button.name}");
 
@@ -25,23 +25,23 @@ public class ButtonsHandler : MonoBehaviour, IStartable
                 // canvasBinder.Canvas.gameObject.SetActive(true);
                 // _activeCanvas = canvasBinder.Canvas;
 
-                HandleButtonClick(button, canvas);
+                await HandleButtonClick(button, canvas);
             }));
         }
     }
 
-    private void HandleButtonClick(Button button, Canvas canvas)
+    private async Awaitable HandleButtonClick(Button button, Canvas canvas)
     {
         foreach (var valueTuple in _handlers)
         {
             if (string.IsNullOrEmpty(valueTuple.buttonName) || button.gameObject.name == valueTuple.buttonName)
             {
-                valueTuple.action(button, canvas);
+                await valueTuple.action(button, canvas);
             }
         }
     }
 
-    public void AddHandler(string buttonName, Action<Button, Canvas> action)
+    public void AddHandler(string buttonName, Func<Button, Canvas, Awaitable> action)
     {
         _handlers.Add((buttonName, action));
     }

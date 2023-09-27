@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +21,12 @@ public class CanvasSwitcher : MonoBehaviour
 
         foreach (var canvasBinder in _canvasBinders)
         {
-            _buttonsHandler.AddHandler(canvasBinder.Button.name, (button, canvas) =>
+            _buttonsHandler.AddHandler(canvasBinder.Button.name, (async (button, canvas) =>
             {
                 _activeCanvas.gameObject.SetActive(false);
                 canvasBinder.Canvas.gameObject.SetActive(true);
                 _activeCanvas = canvasBinder.Canvas;
-            });
+            }));
         }
     }
 
