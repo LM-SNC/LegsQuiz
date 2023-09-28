@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
-using System.Threading;
-using DefaultNamespace;
+using JsonModels;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;

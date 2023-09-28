@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
-using DefaultNamespace;
+using JsonModels;
 using Reflex.Core;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -11,7 +11,8 @@ public class LegsQuizApi : IStartable
     private Dictionary<Type, string> _apiUrls = new()
     {
         { typeof(Players), "https://legsquiz.hentach.ru/players" },
-        { typeof(Games), "https://legsquiz.hentach.ru/games" }
+        { typeof(Games), "https://legsquiz.hentach.ru/games" },
+        { typeof(Backgrounds), "https://legsquiz.hentach.ru/backgrounds" },
     };
 
     public async Awaitable<T?> GetData<T>(string condition = "")

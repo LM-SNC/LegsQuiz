@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DefaultNamespace
+namespace JsonModels
 {
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     [Serializable]
     public class Players
     {
-        public List<Value> value;
+        public List<Player> value;
         public List<object> formatters;
         public List<object> contentTypes;
         public object declaredType;
@@ -15,7 +15,7 @@ namespace DefaultNamespace
     }
 
     [Serializable]
-    public class Value
+    public class Player
     {
         public string id;
         public string name;
