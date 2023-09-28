@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using DefaultNamespace;
@@ -13,7 +14,7 @@ public class LegsQuizApi : IStartable
         { typeof(Games), "https://legsquiz.hentach.ru/games" }
     };
 
-    public async Awaitable<T> GetData<T>(string condition = "")
+    public async Awaitable<T?> GetData<T>(string condition = "")
     {
         using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
 

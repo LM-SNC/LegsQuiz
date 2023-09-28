@@ -26,6 +26,8 @@ public class CanvasSwitcher : MonoBehaviour
                 _activeCanvas.gameObject.SetActive(false);
                 canvasBinder.Canvas.gameObject.SetActive(true);
                 _activeCanvas = canvasBinder.Canvas;
+
+                await Awaitable.NextFrameAsync();
             }));
         }
     }
