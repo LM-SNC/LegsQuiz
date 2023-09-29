@@ -1,21 +1,24 @@
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 
+using System;
 using System.Collections.Generic;
 
 namespace JsonModels
 {
+    [Serializable]
     public class Backgrounds
     {
-        public List<Background> value { get; set; }
-        public List<object> formatters { get; set; }
-        public List<object> contentTypes { get; set; }
-        public object declaredType { get; set; }
-        public int statusCode { get; set; }
+        public List<Background> value;
+        public List<object> formatters;
+        public List<object> contentTypes;
+        public object declaredType;
+        public int statusCode;
 
+        [Serializable]
         public class Background
         {
-            public int gameId { get; set; }
-            public string image { get; set; }
+            public int gameId;
+            public string image;
         }
     }
 }

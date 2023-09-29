@@ -4,6 +4,9 @@ using JsonModels;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CanvasDataManager : MonoBehaviour
 {
@@ -12,7 +15,9 @@ public class CanvasDataManager : MonoBehaviour
 
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
-    
+
+    [SerializeField] private RawImage _background;
+
     private DateTime _nextUpdate = DateTime.Now;
 
     // Start is called before the first frame update
@@ -21,8 +26,8 @@ public class CanvasDataManager : MonoBehaviour
         var games = await _legsQuizApi.GetData<Games>();
 
         var options = games.value.Select(value => value.name).ToList();
-        
-        
+
+
         _customDropDown.AddOptions(options);
 
 
@@ -31,7 +36,7 @@ public class CanvasDataManager : MonoBehaviour
             if (DateTime.Now < _nextUpdate) return;
 
             _nextUpdate = DateTime.Now.AddMinutes(5);
-            
+
             for (int i = 2; i < _table.transform.childCount; i++)
             {
                 Destroy(_table.transform.GetChild(i).gameObject);
@@ -50,6 +55,33 @@ public class CanvasDataManager : MonoBehaviour
                 tableElement.gameObject.SetActive(true);
             }
         }));
+
+        _buttonsHandler.AddHandler("BackButton", (async (button, canvas) => { OnGameChanged(0); }));
+        
+        OnGameChanged(0);
+    }
+
+    public async void OnGameChanged(int id)
+    {
+        Debug.Log(id);
+        var backgroundsUrl = await _legsQuizApi.GetData<Backgrounds>($"?gameid={id}");
+
+        if (backgroundsUrl.value.Count < 1)
+            return;
+
+        var www = UnityWebRequestTexture.GetTexture(backgroundsUrl.value[Random.Range(0, backgroundsUrl.value.Count)]
+            .image);
+        await www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            _background.canvasRenderer.SetTexture(myTexture);
+        }
     }
 
     // Update is called once per frame

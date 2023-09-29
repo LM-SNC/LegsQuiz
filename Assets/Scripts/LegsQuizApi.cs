@@ -18,6 +18,7 @@ public class LegsQuizApi : IStartable
     public async Awaitable<T?> GetData<T>(string condition = "")
     {
         using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
+        Debug.Log(_apiUrls[typeof(T)] + condition);
 
         await www.SendWebRequest();
 
