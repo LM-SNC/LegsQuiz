@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JsonModels;
 using Reflex.Attributes;
@@ -16,13 +17,18 @@ public class CanvasDataManager : MonoBehaviour
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
 
-    [SerializeField] private RawImage _background;
+    private List<Backgrounds.Background> _backgroundsList;
+    [SerializeField] private RawImage[] _canvasBackgrounds;
+    private int _selectedGameId = 0;
 
     private DateTime _nextUpdate = DateTime.Now;
 
     // Start is called before the first frame update
     private async void Start()
     {
+        _backgroundsList = (await _legsQuizApi.GetData<Backgrounds>()).value;
+        SwitchBackgrounds();
+
         var games = await _legsQuizApi.GetData<Games>();
 
         var options = games.value.Select(value => value.name).ToList();
@@ -56,32 +62,61 @@ public class CanvasDataManager : MonoBehaviour
             }
         }));
 
-        _buttonsHandler.AddHandler("BackButton", (async (button, canvas) => { OnGameChanged(0); }));
-        
-        OnGameChanged(0);
+        // _buttonsHandler.AddHandler("BackButton", (async (button, canvas) => { OnGameChanged(0); }));
+        //
+        // OnGameChanged(0);
     }
 
-    public async void OnGameChanged(int id)
+    private async Awaitable SwitchBackgrounds()
     {
-        Debug.Log(id);
-        var backgroundsUrl = await _legsQuizApi.GetData<Backgrounds>($"?gameid={id}");
-
-        if (backgroundsUrl.value.Count < 1)
-            return;
-
-        var www = UnityWebRequestTexture.GetTexture(backgroundsUrl.value[Random.Range(0, backgroundsUrl.value.Count)]
-            .image);
-        await www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        while (true)
         {
-            Debug.Log(www.error);
+            var gameBackgrounds = _backgroundsList.Where(background => background.gameId == _selectedGameId).ToList();
+
+            var www = UnityWebRequestTexture.GetTexture(gameBackgrounds[Random.Range(0, gameBackgrounds.Count)]
+                .image);
+            await www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+
+                await Awaitable.WaitForSecondsAsync(1);
+                continue;
+            }
+
+            foreach (var canvasBackground in _canvasBackgrounds)
+            {
+                Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                canvasBackground.canvasRenderer.SetTexture(myTexture);
+            }
+
+            await Awaitable.WaitForSecondsAsync(1);
         }
-        else
-        {
-            Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            _background.canvasRenderer.SetTexture(myTexture);
-        }
+    }
+
+    public void OnGameChanged(int id)
+    {
+        _selectedGameId = id;
+        // Debug.Log(id);
+        // var backgroundsUrl = await _legsQuizApi.GetData<Backgrounds>($"?gameid={id}");
+        //
+        // Debug.Log(backgroundsUrl.statusCode);
+        // if (backgroundsUrl.value.Count < 1)
+        //     return;
+        //
+        // var www = UnityWebRequestTexture.GetTexture(backgroundsUrl.value[Random.Range(0, backgroundsUrl.value.Count)]
+        //     .image);
+        // await www.SendWebRequest();
+        //
+        // if (www.result != UnityWebRequest.Result.Success)
+        // {
+        //     Debug.Log(www.error);
+        // }
+        // else
+        // {
+        //     Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        //     _background.canvasRenderer.SetTexture(myTexture);
+        // }
     }
 
     // Update is called once per frame
