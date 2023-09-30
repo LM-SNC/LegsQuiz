@@ -19,15 +19,18 @@ public class BackgroundsSwitcher : MonoBehaviour
 
     private async void Start()
     {
-        foreach (var background in (await _legsQuizApi.GetData<JsonModels.Backgrounds>()).value)
+        for (int i = 0; i < 4; i++)
         {
-            if (_backgroundsUrl.TryGetValue(background.gameId, out var gameBackgrounds))
+            foreach (var background in (await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}")).value)
             {
-                gameBackgrounds.Add(background.image);
-            }
-            else
-            {
-                _backgroundsUrl[background.gameId] = new List<string> { background.image };
+                if (_backgroundsUrl.TryGetValue(background.gameId, out var gameBackgrounds))
+                {
+                    gameBackgrounds.Add(background.image);
+                }
+                else
+                {
+                    _backgroundsUrl[background.gameId] = new List<string> { background.image };
+                }
             }
         }
 
@@ -40,16 +43,15 @@ public class BackgroundsSwitcher : MonoBehaviour
         await ChangeBackground();
     }
 
-    public void OnGameChanged(int gameId)
+    public async void OnGameChanged(int gameId)
     {
-        Debug.Log("CHANGEEE");
         _selectedGame = gameId;
+
+        await ChangeBackground();
     }
 
     private async Awaitable ChangeBackground()
     {
-        Debug.Log("Set");
-        Debug.Log(_canvasSwitcher.ActiveCanvas == null);
         _canvasSwitcher.ActiveCanvas.transform.Find("Background").GetComponent<RawImage>().texture =
             await GetRandomBackground(_selectedGame);
     }

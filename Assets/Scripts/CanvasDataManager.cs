@@ -42,7 +42,7 @@ public class CanvasDataManager : MonoBehaviour
 
             var players = await _legsQuizApi.GetData<Players>();
 
-            foreach (var player in players.value)
+            foreach (var player in players.value.Take(15))
             {
                 var tableElement = Instantiate(template, _table.transform);
                 tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
