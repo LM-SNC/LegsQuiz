@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class CanvasSwitcher : MonoBehaviour
 {
     [SerializeField] private CanvasBinder[] _canvasBinders;
-    private Canvas _activeCanvas;
+    public Canvas ActiveCanvas { get; private set; }
 
     [Inject] private ButtonsHandler _buttonsHandler;
 
     // Start is called before the first frame update
     void Start()
     {
-        _activeCanvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)
+        ActiveCanvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)
             .First(canvas => canvas.gameObject.activeSelf);
 
 
@@ -22,18 +22,13 @@ public class CanvasSwitcher : MonoBehaviour
         {
             _buttonsHandler.AddHandler(canvasBinder.Button.name, (async (button, canvas) =>
             {
-                _activeCanvas.gameObject.SetActive(false);
+                ActiveCanvas.gameObject.SetActive(false);
                 canvasBinder.Canvas.gameObject.SetActive(true);
-                _activeCanvas = canvasBinder.Canvas;
+                ActiveCanvas = canvasBinder.Canvas;
 
                 await Awaitable.NextFrameAsync();
             }));
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
 

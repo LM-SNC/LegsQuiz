@@ -8,6 +8,7 @@ public class LegsQuizInstaller : MonoBehaviour, IInstaller
     public void InstallBindings(ContainerDescriptor descriptor)
     {
         descriptor.AddInstance(_buttonsHandler);
+
         descriptor.AddSingleton(typeof(LegsQuizApi));
         //descriptor.AddSingleton(typeof(ButtonsHandler), typeof(IStartable));
     }
