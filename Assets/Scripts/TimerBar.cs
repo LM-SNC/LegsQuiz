@@ -19,13 +19,13 @@ public class TimerBar : MonoBehaviour
 
     private void Start()
     {
-        _timerBarStartColor = _timerBarFill.color;
         _timerWaitTime = (float)TimeSpan.FromMilliseconds(1000 / (_timerBarChangeRate / _timeByImage)).TotalSeconds;
         _timerBarChangeValue = 1 / _timerBarChangeRate;
     }
 
     public async Awaitable StartTimer()
     {
+        _timerBarStartColor = _timerBarFill.color;
         while (_timerBar.value > 0)
         {
             _timerBarFill.color = Color.Lerp(_timerBarStartColor, _timerBarEndColor, Math.Abs(_timerBar.value - 1.0f));
