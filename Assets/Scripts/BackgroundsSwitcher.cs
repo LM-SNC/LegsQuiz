@@ -77,6 +77,8 @@ public class BackgroundsSwitcher : MonoBehaviour
             _downloadedBackgrounds[background] = texture;
         }
 
+        
+        Debug.Log(texture.width + ":: " + texture.height);
         return texture;
     }
 }
