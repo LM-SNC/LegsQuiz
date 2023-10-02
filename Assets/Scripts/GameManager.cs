@@ -1,58 +1,56 @@
-using System;
+using System.Collections.Generic;
+using JsonModels;
+using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Inject] private LegsQuizApi _legsQuizApi;
     private TimerBar _timerBar;
-    [SerializeField] private RawImage _gameImage;
-    private Vector3 _imageDefaultPosition;
-    
-    [SerializeField] private Vector3 _bezie;
-    [SerializeField] private float _animationRate;
+    private GameImageController _gameImageController;
+
+    private Dictionary<int, List<Questions.Question>> _allQuestions;
+    private Queue<Questions.Question> _gameQuestions;
+    private Dictionary<string, Texture2D> _gameImages;
 
     // Start is called before the first frame update
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
-        _timerBar.StartTimer();
+        _gameImageController = gameObject.GetComponent<GameImageController>();
 
-        _imageDefaultPosition = _gameImage.transform.localPosition;
+        _allQuestions = new();
+        _gameQuestions = new();
+        _gameImages = new();
 
-        await UpImage(461);
-        //ResetImage();
-    }
-
-    private void ResetImage()
-    {
-        _gameImage.transform.localPosition = _imageDefaultPosition;
-    }
-
-    private async Awaitable UpImage(float y)
-    {
-        //_gameImage.GetComponent<AspectRatioFitter>().enabled = false;
-
-        var localPosition = _gameImage.transform.localPosition;
-
-        var endPosition = localPosition;
-        endPosition.y -= y;
-
-        var time = 0.0f;
-        while (time <= 1.0f)
+        for (int i = 0; i < 4; i++)
         {
-            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time);
-            _gameImage.transform.localPosition = Vector3.Lerp(localPosition, endPosition, time);
-            await Awaitable.WaitForSecondsAsync(_animationRate);
+            _allQuestions[i] = new List<Questions.Question>();
+
+            foreach (var question in (await _legsQuizApi.GetData<Questions>($"?gameid={i}")).value)
+            {
+                Debug.Log("Question image: " + question.image);
+                _allQuestions[i].Add(question);
+            }
         }
     }
 
-    private float Bezie(float p1, float p2, float p3, float t)
+    public void StartGame(int gameId)
     {
-        return (float)(Math.Pow(1.0f - t, 2) * p1 + 2 * t * (1 - t) * p2 + Math.Pow(t, 2) * p3);
+        ProcessGameImages(gameId);
     }
 
-    // Update is called once per frame
-    private void Update()
+    public void StopGame()
     {
+        
+    }
+
+    private async Awaitable ProcessGameImages(int gameId)
+    {
+        foreach (var question in _allQuestions[gameId])
+        {
+            var texture = await WebUtils.DownloadImage(question.image);
+            _gameImages[question.image] = texture;
+        }
     }
 }

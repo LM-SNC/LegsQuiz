@@ -21,16 +21,10 @@ public class BackgroundsSwitcher : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
+            _backgroundsUrl.Add(i, new List<string>());
             foreach (var background in (await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}")).value)
             {
-                if (_backgroundsUrl.TryGetValue(background.gameId, out var gameBackgrounds))
-                {
-                    gameBackgrounds.Add(background.image);
-                }
-                else
-                {
-                    _backgroundsUrl[background.gameId] = new List<string> { background.image };
-                }
+                _backgroundsUrl[i].Add(background.image);
             }
         }
 
@@ -77,7 +71,7 @@ public class BackgroundsSwitcher : MonoBehaviour
             _downloadedBackgrounds[background] = texture;
         }
 
-        
+
         Debug.Log(texture.width + ":: " + texture.height);
         return texture;
     }

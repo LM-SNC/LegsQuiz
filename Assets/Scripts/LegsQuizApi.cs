@@ -13,6 +13,7 @@ public class LegsQuizApi : IStartable
         { typeof(Players), "https://legsquiz.hentach.ru/players" },
         { typeof(Games), "https://legsquiz.hentach.ru/games" },
         { typeof(Backgrounds), "https://legsquiz.hentach.ru/backgrounds" },
+        { typeof(Questions), "https://legsquiz.hentach.ru/questions"}
     };
 
     public async Awaitable<T?> GetData<T>(string condition = "")
