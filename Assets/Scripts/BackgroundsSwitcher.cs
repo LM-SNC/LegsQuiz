@@ -28,50 +28,54 @@ public class BackgroundsSwitcher : MonoBehaviour
             }
         }
 
-        DownloadBackgrounds();
+        foreach (var backgroundsUrl in _backgroundsUrl.Values)
+        {
+            foreach (var backgroundUrl in backgroundsUrl)
+            {
+                DownloadBackground(backgroundUrl);
+            }
+        }
 
 
-        _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { await ChangeBackground(); });
-        _buttonsHandler.AddHandler("MainMenuButton", async (button, canvas) => { await ChangeBackground(); });
+        _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { ChangeBackground(); });
+        _buttonsHandler.AddHandler("MainMenuButton", async (button, canvas) => { ChangeBackground(); });
         _buttonsHandler.AddHandler("LeaderBoardButton",
-            async (button, canvas) => { await ChangeBackground(); });
+            async (button, canvas) => { ChangeBackground(); });
 
-        await ChangeBackground();
+        ChangeBackground();
     }
 
     public async void OnGameChanged(int gameId)
     {
         _selectedGame = gameId;
 
-        await ChangeBackground();
+        ChangeBackground();
     }
 
-    private async Awaitable ChangeBackground()
+    private void ChangeBackground()
     {
+        Debug.Log("Change background");
         _canvasSwitcher.ActiveCanvas.transform.Find("Background").GetComponent<RawImage>().texture =
             GetRandomBackground(_selectedGame);
     }
 
     private Texture2D GetRandomBackground(int gameId)
     {
+        Debug.Log("GetRandom");
         var backgrounds = _backgroundsUrl[gameId];
 
         var background = backgrounds[Random.Range(0, backgrounds.Count)];
 
         if (_downloadedBackgrounds.TryGetValue(background, out var texture)) return texture;
 
+        Debug.Log("Null");
         return null;
     }
 
-    private async Awaitable DownloadBackgrounds()
+    private async Awaitable DownloadBackground(string url)
     {
-        foreach (var backgroundsUrl in _backgroundsUrl.Values)
-        {
-            foreach (var backgroundUrl in backgroundsUrl)
-            {
-                var texture = await WebUtils.DownloadImage(backgroundUrl);
-                _downloadedBackgrounds[backgroundUrl] = texture;
-            }
-        }
+        var texture = await WebUtils.DownloadImage(url);
+        _downloadedBackgrounds[url] = texture;
+        Debug.Log("Downloaded: " + url);
     }
 }

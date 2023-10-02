@@ -41,7 +41,6 @@ public class ButtonsHandler : MonoBehaviour, IStartable
             if (string.IsNullOrEmpty(valueTuple.buttonName) || button.gameObject.name == valueTuple.buttonName)
             {
                 await valueTuple.action(button, canvas);
-                break;
             }
         }
     }

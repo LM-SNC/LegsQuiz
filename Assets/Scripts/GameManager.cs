@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
 
-        //_gameImageController.UpImage(412);
+        _gameImageController.UpImage(412);
 
         _allQuestions = new();
         _gameQuestions = new();
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Question image: " + question.image);
                 _allQuestions[i].Add(question);
             }
+            
+            ProcessGameImages(i);
         }
     }
 
@@ -62,7 +64,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int gameId)
     {
-        ProcessGameImages(gameId);
     }
 
     public void StopGame()
