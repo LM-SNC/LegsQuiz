@@ -11,8 +11,12 @@ public class ButtonsHandler : MonoBehaviour, IStartable
     public void Start()
     {
         var allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        
         foreach (var button in allButtons)
         {
+            if (button.tag == "UnListenable")
+                continue;
+
             var canvas = button.transform.root.GetComponent<Canvas>();
 
             Debug.Log($"Add subscriber for {button.name}");
@@ -37,6 +41,7 @@ public class ButtonsHandler : MonoBehaviour, IStartable
             if (string.IsNullOrEmpty(valueTuple.buttonName) || button.gameObject.name == valueTuple.buttonName)
             {
                 await valueTuple.action(button, canvas);
+                break;
             }
         }
     }

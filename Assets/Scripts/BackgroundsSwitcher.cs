@@ -28,6 +28,8 @@ public class BackgroundsSwitcher : MonoBehaviour
             }
         }
 
+        DownloadBackgrounds();
+
 
         _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { await ChangeBackground(); });
         _buttonsHandler.AddHandler("MainMenuButton", async (button, canvas) => { await ChangeBackground(); });
@@ -47,32 +49,29 @@ public class BackgroundsSwitcher : MonoBehaviour
     private async Awaitable ChangeBackground()
     {
         _canvasSwitcher.ActiveCanvas.transform.Find("Background").GetComponent<RawImage>().texture =
-            await GetRandomBackground(_selectedGame);
+            GetRandomBackground(_selectedGame);
     }
 
-    private async Awaitable<Texture2D> GetRandomBackground(int gameId)
+    private Texture2D GetRandomBackground(int gameId)
     {
         var backgrounds = _backgroundsUrl[gameId];
+
         var background = backgrounds[Random.Range(0, backgrounds.Count)];
 
         if (_downloadedBackgrounds.TryGetValue(background, out var texture)) return texture;
 
-        using var www = UnityWebRequestTexture.GetTexture(background);
+        return null;
+    }
 
-        await www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+    private async Awaitable DownloadBackgrounds()
+    {
+        foreach (var backgroundsUrl in _backgroundsUrl.Values)
         {
-            Debug.Log(www.error);
+            foreach (var backgroundUrl in backgroundsUrl)
+            {
+                var texture = await WebUtils.DownloadImage(backgroundUrl);
+                _downloadedBackgrounds[backgroundUrl] = texture;
+            }
         }
-        else
-        {
-            texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            _downloadedBackgrounds[background] = texture;
-        }
-
-
-        Debug.Log(texture.width + ":: " + texture.height);
-        return texture;
     }
 }
