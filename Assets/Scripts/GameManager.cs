@@ -26,13 +26,18 @@ public class GameManager : MonoBehaviour
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
 
-        _gameImageController.UpImage(412);
+        //_gameImageController.UpImage(462);
 
         _allQuestions = new();
         _gameQuestions = new();
         _gameImages = new();
         _answerButtonTextFields = new();
 
+
+        await _gameImageController.FocusOnLegs();
+        await Awaitable.WaitForSecondsAsync(2);
+      //  await _gameImageController.ShowCharacter(672);
+        
         for (int i = 0; i < _buttonsContainer.transform.childCount; i++)
         {
             var button = _buttonsContainer.transform.GetChild(i);
