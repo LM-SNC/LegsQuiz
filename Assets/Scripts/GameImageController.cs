@@ -5,31 +5,27 @@ using UnityEngine.UI;
 public class GameImageController : MonoBehaviour
 {
     [SerializeField] private RawImage _gameImage;
-    private Vector3 _imageDefaultPosition;
+    [SerializeField] private float _imageScale;
+    private RectTransform _imageContainerRectTransform;
 
     [SerializeField] private Vector3 _bezie;
     [SerializeField] private float _animationRate;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        _imageDefaultPosition = _gameImage.transform.localPosition;
+        _imageContainerRectTransform = _gameImage.transform.parent.GetComponent<RectTransform>();
     }
 
-    public void ResetImage()
+    public async Awaitable FaceFocus()
     {
-        _gameImage.transform.localPosition = _imageDefaultPosition;
-    }
-
-    public async Awaitable ShowCharacter(float y)
-    {
-        //_gameImage.GetComponent<AspectRatioFitter>().enabled = false;
-
         var localPosition = _gameImage.transform.localPosition;
         var localScale = _gameImage.transform.localScale;
 
         var endPosition = localPosition;
-        endPosition.y -= y;
+
+        endPosition.y = -((_gameImage.rectTransform.rect.height - _imageContainerRectTransform.rect.height) / 2);
 
         var time = 0.0f;
         while (time <= 1.0f)
@@ -41,28 +37,14 @@ public class GameImageController : MonoBehaviour
         }
     }
 
-    public async Awaitable FocusOnLegs()
+    public void LegsFocus()
     {
-        return;
-        var primaryPosition = _gameImage.transform.localPosition;
+        _gameImage.transform.localScale = new Vector3(_imageScale, _imageScale, _imageScale);
 
-        _gameImage.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-        var position = _gameImage.transform.localPosition;
+        var pos = _gameImage.transform.localPosition;
+        pos.y = (_gameImage.rectTransform.rect.height * _imageScale - _imageContainerRectTransform.rect.height) / 2;
 
-        position.y += (primaryPosition.y + (primaryPosition.y * 1.3f) / 4 - primaryPosition.y);
-
-
-        // Debug.Log("DeltaY: " + (secondY - firstY));
-        // position.y -= secondY - firstY;
-        //position.y = 442;
-
-        _gameImage.transform.localPosition = position;
-    }
-
-
-    private void Update()
-    {
-        Debug.Log(_gameImage.GetComponent<RectTransform>().sizeDelta);
+        _gameImage.transform.localPosition = pos;
     }
 
     private float Bezie(float p1, float p2, float p3, float t)

@@ -26,18 +26,18 @@ public class GameManager : MonoBehaviour
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
 
-        //_gameImageController.UpImage(462);
-
         _allQuestions = new();
         _gameQuestions = new();
         _gameImages = new();
         _answerButtonTextFields = new();
 
 
-        await _gameImageController.FocusOnLegs();
-        await Awaitable.WaitForSecondsAsync(2);
-      //  await _gameImageController.ShowCharacter(672);
+        _timerBar.StartTimer();
         
+        _gameImageController.LegsFocus();
+        await Awaitable.WaitForSecondsAsync(2);
+        await _gameImageController.FaceFocus();
+
         for (int i = 0; i < _buttonsContainer.transform.childCount; i++)
         {
             var button = _buttonsContainer.transform.GetChild(i);
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Question image: " + question.image);
                 _allQuestions[i].Add(question);
             }
-            
+
             ProcessGameImages(i);
         }
     }
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void StopGame()
     {
+        
     }
 
     private async Awaitable ProcessGameImages(int gameId)

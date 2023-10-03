@@ -5,17 +5,22 @@ using UnityEngine.UI;
 public class TimerBar : MonoBehaviour
 {
     [SerializeField] private Slider _timerBar;
-    [SerializeField] private Image _timerBarFill;
+    private Image _timerBarFill;
 
     [SerializeField] private float _timeByImage;
     [SerializeField] private float _timerBarChangeRate;
     private float _timerBarChangeValue;
     private float _colorChangeValue;
-    
+
     [SerializeField] private Color _timerBarEndColor;
     private Color _timerBarStartColor;
 
     private float _timerWaitTime;
+
+    private void Awake()
+    {
+        _timerBarFill = _timerBar.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
+    }
 
     private void Start()
     {
