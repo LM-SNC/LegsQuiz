@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using JsonModels;
 using Reflex.Attributes;
 using TMPro;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     [Inject] private LegsQuizApi _legsQuizApi;
     [Inject] private ButtonsHandler _buttonsHandler;
+    [Inject] private LoadingProgressBar _progressBar;
+    
 
     private TimerBar _timerBar;
     private GameImageController _gameImageController;
@@ -20,23 +23,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _buttonsContainer;
     private List<TMP_Text> _answerButtonTextFields;
 
-    // Start is called before the first frame update
-    private async void Start()
+    public GameManager(LegsQuizApi legsQuizApi)
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
+    }
 
+    private async void Start()
+    {
         _allQuestions = new();
         _gameQuestions = new();
         _gameImages = new();
         _answerButtonTextFields = new();
-
-
-        _timerBar.StartTimer();
-        
-        _gameImageController.LegsFocus();
-        await Awaitable.WaitForSecondsAsync(2);
-        await _gameImageController.FaceFocus();
 
         for (int i = 0; i < _buttonsContainer.transform.childCount; i++)
         {
@@ -48,6 +46,7 @@ public class GameManager : MonoBehaviour
             _answerButtonTextFields.Add(textComponent);
         }
 
+
         for (int i = 0; i < 4; i++)
         {
             _allQuestions[i] = new List<Questions.Question>();
@@ -56,9 +55,9 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Question image: " + question.image);
                 _allQuestions[i].Add(question);
+                _progressBar.AddProgressItems(1);
+                ProcessGameImage(question.image);
             }
-
-            ProcessGameImages(i);
         }
     }
 
@@ -73,18 +72,12 @@ public class GameManager : MonoBehaviour
 
     public void StopGame()
     {
-        
     }
 
-    private async Awaitable ProcessGameImages(int gameId)
+    private async Awaitable ProcessGameImage(string imageUrl)
     {
-        foreach (var question in _allQuestions[gameId])
-        {
-            if (_gameImages.ContainsKey(question.image))
-                continue;
+        _gameImages[imageUrl] = await WebUtils.DownloadImage(imageUrl);
+        _progressBar.CompleteItem();
 
-            var texture = await WebUtils.DownloadImage(question.image);
-            _gameImages[question.image] = texture;
-        }
     }
 }

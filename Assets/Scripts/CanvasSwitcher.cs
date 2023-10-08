@@ -30,6 +30,20 @@ public class CanvasSwitcher : MonoBehaviour
             }));
         }
     }
+
+    public void Switch(string name)
+    {
+        foreach (var canvasBinder in _canvasBinders)
+        {
+            if (canvasBinder.Canvas.name != name) continue;
+            
+            ActiveCanvas.gameObject.SetActive(false);
+            canvasBinder.Canvas.gameObject.SetActive(true);
+            ActiveCanvas = canvasBinder.Canvas;
+            
+            break;
+        }
+    }
 }
 
 [Serializable]

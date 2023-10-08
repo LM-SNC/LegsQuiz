@@ -1,39 +1,29 @@
-using System;
 using System.Collections.Generic;
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class BackgroundsSwitcher : MonoBehaviour
 {
-    private int _selectedGame;
+    private int _selectedGame = 0;
     [Inject] private ButtonsHandler _buttonsHandler;
+    [Inject] private LoadingProgressBar _progressBar;
 
     [SerializeField] private CanvasSwitcher _canvasSwitcher;
 
     [Inject] private LegsQuizApi _legsQuizApi;
-    private Dictionary<string, Texture2D> _downloadedBackgrounds = new();
-    private Dictionary<int, List<string>> _backgroundsUrl = new();
+    private Dictionary<int, Texture2D> _backgrounds = new();
 
     private async void Start()
     {
         for (int i = 0; i < 4; i++)
         {
-            _backgroundsUrl.Add(i, new List<string>());
-            foreach (var background in (await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}")).value)
-            {
-                _backgroundsUrl[i].Add(background.image);
-            }
-        }
+            var gameBackgrounds = await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}");
+            if (gameBackgrounds.value == null || gameBackgrounds.value.Count < 1)
+                continue;
 
-        foreach (var backgroundsUrl in _backgroundsUrl.Values)
-        {
-            foreach (var backgroundUrl in backgroundsUrl)
-            {
-                DownloadBackground(backgroundUrl);
-            }
+            _progressBar.AddProgressItems(1);
+            DownloadBackground(gameBackgrounds.value[0].image, i);
         }
 
 
@@ -42,7 +32,7 @@ public class BackgroundsSwitcher : MonoBehaviour
         _buttonsHandler.AddHandler("LeaderBoardButton",
             async (button, canvas) => { ChangeBackground(); });
 
-        ChangeBackground();
+        _progressBar.OnResourcesLoaded += ChangeBackground;
     }
 
     public async void OnGameChanged(int gameId)
@@ -56,26 +46,13 @@ public class BackgroundsSwitcher : MonoBehaviour
     {
         Debug.Log("Change background");
         _canvasSwitcher.ActiveCanvas.transform.Find("Background").GetComponent<RawImage>().texture =
-            GetRandomBackground(_selectedGame);
+            _backgrounds[_selectedGame];
     }
 
-    private Texture2D GetRandomBackground(int gameId)
-    {
-        Debug.Log("GetRandom");
-        var backgrounds = _backgroundsUrl[gameId];
-
-        var background = backgrounds[Random.Range(0, backgrounds.Count)];
-
-        if (_downloadedBackgrounds.TryGetValue(background, out var texture)) return texture;
-
-        Debug.Log("Null");
-        return null;
-    }
-
-    private async Awaitable DownloadBackground(string url)
+    private async Awaitable DownloadBackground(string url, int gameId)
     {
         var texture = await WebUtils.DownloadImage(url);
-        _downloadedBackgrounds[url] = texture;
-        Debug.Log("Downloaded: " + url);
+        _backgrounds[gameId] = texture;
+        _progressBar.CompleteItem();
     }
 }

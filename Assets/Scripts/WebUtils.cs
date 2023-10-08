@@ -12,7 +12,7 @@ public class WebUtils
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(www.error);
+            Debug.LogError(www.error + " :: " + www.url);
             return null;
         }
 
