@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class TimerBar : MonoBehaviour
 
     [SerializeField] private float _timeByImage;
     [SerializeField] private float _timerBarChangeRate;
+    
+
     private float _timerBarChangeValue;
     private float _colorChangeValue;
 
@@ -17,9 +20,14 @@ public class TimerBar : MonoBehaviour
 
     private float _timerWaitTime;
 
+    private Awaitable _timeBarTask;
+
+    private bool _timerIsStop;
+
     private void Awake()
     {
         _timerBarFill = _timerBar.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
+        _timerBarStartColor = _timerBarFill.color;
     }
 
     private void Start()
@@ -28,15 +36,22 @@ public class TimerBar : MonoBehaviour
         _timerBarChangeValue = 1 / _timerBarChangeRate;
     }
 
+
     public async Awaitable StartTimer()
     {
-        _timerBarStartColor = _timerBarFill.color;
-        while (_timerBar.value > 0)
+        _timerIsStop = false;
+
+        while (_timerBar.value > 0 && !_timerIsStop)
         {
             _timerBarFill.color = Color.Lerp(_timerBarStartColor, _timerBarEndColor, Math.Abs(_timerBar.value - 1.0f));
             _timerBar.value -= _timerBarChangeValue;
             await Awaitable.WaitForSecondsAsync(_timerWaitTime);
         }
+    }
+
+    public void StopTimer()
+    {
+        _timerIsStop = true;
     }
 
     public void ResetTimer()

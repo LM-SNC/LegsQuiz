@@ -37,6 +37,11 @@ public class GameImageController : MonoBehaviour
         }
     }
 
+    public void SetImage(Texture2D texture2D)
+    {
+        _gameImage.texture = texture2D;
+    }
+    
     public void LegsFocus()
     {
         _gameImage.transform.localScale = new Vector3(_imageScale, _imageScale, _imageScale);

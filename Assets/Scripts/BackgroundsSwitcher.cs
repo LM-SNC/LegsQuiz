@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BackgroundsSwitcher : MonoBehaviour
 {
-    private int _selectedGame = 0;
+    public int SelectedGame { get; private set; }
     [Inject] private ButtonsHandler _buttonsHandler;
     [Inject] private LoadingProgressBar _progressBar;
 
@@ -37,7 +37,7 @@ public class BackgroundsSwitcher : MonoBehaviour
 
     public async void OnGameChanged(int gameId)
     {
-        _selectedGame = gameId;
+        SelectedGame = gameId;
 
         ChangeBackground();
     }
@@ -46,7 +46,7 @@ public class BackgroundsSwitcher : MonoBehaviour
     {
         Debug.Log("Change background");
         _canvasSwitcher.ActiveCanvas.transform.Find("Background").GetComponent<RawImage>().texture =
-            _backgrounds[_selectedGame];
+            _backgrounds[SelectedGame];
     }
 
     private async Awaitable DownloadBackground(string url, int gameId)

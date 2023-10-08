@@ -1,4 +1,3 @@
-using System;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -35,12 +34,23 @@ public class LoadingProgressBar : MonoBehaviour
         }
     }
 
+    private async Awaitable SmoothAddProgress()
+    {
+        float valueByIteration = _step / 10;
+
+        for (int i = 0; i < 10; i++)
+        {
+            _slider.value += valueByIteration;
+            await Awaitable.WaitForSecondsAsync(0.04f);
+        }
+    }
+    
     public void CompleteItem()
     {
         _progressItems -= 1;
         _text.SetText($"{_maxProgressItems - _progressItems}/{_maxProgressItems}");
 
-        _slider.value += _step;
+        SmoothAddProgress();
 
         if (_progressItems <= 0)
         {
