@@ -4,18 +4,19 @@ using UnityEngine.Networking;
 
 public class WebUtils
 {
-    public static async Awaitable<Texture2D?> DownloadImage(string url)
+    public static async Awaitable<Texture2D?> DownloadImage(string url, int tryCount = 3)
     {
-        using var www = UnityWebRequestTexture.GetTexture(url);
-
-        await www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        for (int i = 0; i < tryCount; i++)
         {
-            Debug.LogError(www.error + " :: " + www.url);
-            return null;
-        }
+            using var www = UnityWebRequestTexture.GetTexture(url);
 
-        return ((DownloadHandlerTexture)www.downloadHandler).texture;
+            await www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+                return ((DownloadHandlerTexture)www.downloadHandler).texture;
+            Debug.LogError(www.error + " :: " + www.url);
+        }
+        
+        return null;
     }
 }

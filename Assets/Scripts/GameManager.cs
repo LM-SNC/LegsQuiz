@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Inject] private ButtonsHandler _buttonsHandler;
     [Inject] private LoadingProgressBar _progressBar;
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
+    [Inject] private CanvasDataManager _canvasDataManager;
 
     [SerializeField] private TMP_Text _scoreField;
     
@@ -69,16 +70,16 @@ public class GameManager : MonoBehaviour
         }
 
 
-        for (int i = 0; i < 4; i++)
+        foreach (var game in _canvasDataManager.Games.value)
         {
-            _allQuestions[i] = new List<Questions.Question>();
-            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={i}")).value;
+            _allQuestions[game.id] = new List<Questions.Question>();
+            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={game.id}")).value;
             _progressBar.AddProgressItems(questions.Count);
             
             foreach (var question in questions)
             {
                 Debug.Log("Question image: " + question.image);
-                _allQuestions[i].Add(question);
+                _allQuestions[game.id].Add(question);
                 ProcessGameImage(question.image);
             }
         }

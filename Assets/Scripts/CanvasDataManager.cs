@@ -1,4 +1,5 @@
-using System;   
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using JsonModels;
 using Reflex.Attributes;
@@ -13,15 +14,16 @@ public class CanvasDataManager : MonoBehaviour
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
 
+    public Games Games { get; private set; }
 
     private DateTime _nextUpdate = DateTime.Now;
 
     // Start is called before the first frame update
     private async void Start()
     {
-        var games = await _legsQuizApi.GetData<Games>();
+        Games = await _legsQuizApi.GetData<Games>();
 
-        var options = games.value.Select(value => value.name).ToList();
+        var options = Games.value.Select(value => value.name).ToList();
 
 
         _customDropDown.AddOptions(options);
