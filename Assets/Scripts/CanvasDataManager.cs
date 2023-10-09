@@ -20,7 +20,7 @@ public class CanvasDataManager : MonoBehaviour
 
     // Start is called before the first frame update
     private async void Start()
-    {
+    { 
         Games = await _legsQuizApi.GetData<Games>();
 
         var options = Games.value.Select(value => value.name).ToList();
