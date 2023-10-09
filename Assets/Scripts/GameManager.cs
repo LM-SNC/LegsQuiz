@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
 
     [SerializeField] private TMP_Text _scoreField;
+    
+    [SerializeField] private Image _gameBorder;
 
     private TimerBar _timerBar;
     private GameImageController _gameImageController;
@@ -36,6 +38,9 @@ public class GameManager : MonoBehaviour
     private bool _effectTime = false;
 
 
+    [SerializeField] private Color _trueAnswerColor;
+    [SerializeField] private Color _wrongAnswerColor;
+    
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
@@ -67,12 +72,13 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             _allQuestions[i] = new List<Questions.Question>();
-
-            foreach (var question in (await _legsQuizApi.GetData<Questions>($"?gameid={i}")).value)
+            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={i}")).value;
+            _progressBar.AddProgressItems(questions.Count);
+            
+            foreach (var question in questions)
             {
                 Debug.Log("Question image: " + question.image);
                 _allQuestions[i].Add(question);
-                _progressBar.AddProgressItems(1);
                 ProcessGameImage(question.image);
             }
         }
@@ -91,12 +97,14 @@ public class GameManager : MonoBehaviour
         if (answer == _gameQuestions[_currentQuestion].answer)
         {
             _score++;
-            UpdateButtonColor(button, Color.green);
+            UpdateButtonColor(button, _trueAnswerColor);
+            _gameBorder.color = _trueAnswerColor;
             _scoreField.SetText(_score.ToString());
         }
         else
         {
-            UpdateButtonColor(button, Color.red);
+            UpdateButtonColor(button, _wrongAnswerColor);
+            _gameBorder.color = _wrongAnswerColor;
         }
 
         _effectTime = true;
@@ -146,6 +154,8 @@ public class GameManager : MonoBehaviour
 
         var randomNames = new List<string>();
 
+        _gameBorder.color = Color.white;
+        
         while (randomNames.Count < 4)
         {
             var name = _gameQuestions[Random.Range(0, _gameQuestions.Count)].answer;
