@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         _timerBar.OnTimerEnd += async () =>
         {
             _effectTime = true;
-            
+
             _gameBorder.color = _wrongAnswerColor;
             await StopQuestion();
         };
@@ -105,10 +105,14 @@ public class GameManager : MonoBehaviour
             return;
 
         _effectTime = true;
-        
+
         if (answer == _gameQuestions[_currentQuestion].answer)
         {
-            _score++;
+            if (++_score > _canvasDataManager.PlayerMaxScore)
+            {
+                _canvasDataManager.UpdatePlayerMaxScore(_score);
+            }
+
             UpdateButtonColor(button, _trueAnswerColor);
             _gameBorder.color = _trueAnswerColor;
             _scoreField.SetText(_score.ToString());

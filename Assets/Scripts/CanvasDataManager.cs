@@ -13,6 +13,9 @@ public class CanvasDataManager : MonoBehaviour
 
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
+    [SerializeField] private TMP_Text _score;
+
+    public int PlayerMaxScore { get; private set; }
 
     public Games Games { get; private set; }
 
@@ -20,7 +23,7 @@ public class CanvasDataManager : MonoBehaviour
 
     // Start is called before the first frame update
     private async void Start()
-    { 
+    {
         Games = await _legsQuizApi.GetData<Games>();
 
         var options = Games.value.Select(value => value.name).ToList();
@@ -53,5 +56,13 @@ public class CanvasDataManager : MonoBehaviour
                 tableElement.gameObject.SetActive(true);
             }
         }));
+
+        UpdatePlayerMaxScore(0);
+    }
+
+    public async Awaitable UpdatePlayerMaxScore(int score)
+    {
+        PlayerMaxScore = score;
+        _score.SetText($"Рекорд: {PlayerMaxScore}");
     }
 }
