@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [Inject] private CanvasDataManager _canvasDataManager;
 
     [SerializeField] private TMP_Text _scoreField;
-    
+
     [SerializeField] private Image _gameBorder;
 
     private TimerBar _timerBar;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Color _trueAnswerColor;
     [SerializeField] private Color _wrongAnswerColor;
-    
+
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
@@ -70,12 +70,13 @@ public class GameManager : MonoBehaviour
         }
 
 
-        foreach (var game in _canvasDataManager.Games.value)
+        var games = await _legsQuizApi.GetData<Games>();
+        foreach (var game in games.value)
         {
             _allQuestions[game.id] = new List<Questions.Question>();
             var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={game.id}")).value;
             _progressBar.AddProgressItems(questions.Count);
-            
+
             foreach (var question in questions)
             {
                 Debug.Log("Question image: " + question.image);
@@ -88,6 +89,14 @@ public class GameManager : MonoBehaviour
             async (button, canvas) => { StartGame(_backgroundsSwitcher.SelectedGame); });
 
         _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { StopGame(); });
+
+        _timerBar.OnTimerEnd += async () =>
+        {
+            _effectTime = true;
+            
+            _gameBorder.color = _wrongAnswerColor;
+            await StopQuestion();
+        };
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -95,6 +104,8 @@ public class GameManager : MonoBehaviour
         if (_effectTime)
             return;
 
+        _effectTime = true;
+        
         if (answer == _gameQuestions[_currentQuestion].answer)
         {
             _score++;
@@ -108,11 +119,16 @@ public class GameManager : MonoBehaviour
             _gameBorder.color = _wrongAnswerColor;
         }
 
-        _effectTime = true;
+        await StopQuestion();
+        ChangeQuestion();
+    }
 
+    private async Awaitable StopQuestion()
+    {
         _timerBar.StopTimer();
         await _gameImageController.FaceFocus();
         await Awaitable.WaitForSecondsAsync(1);
+
         ChangeQuestion();
     }
 
@@ -156,7 +172,7 @@ public class GameManager : MonoBehaviour
         var randomNames = new List<string>();
 
         _gameBorder.color = Color.white;
-        
+
         while (randomNames.Count < 4)
         {
             var name = _gameQuestions[Random.Range(0, _gameQuestions.Count)].answer;

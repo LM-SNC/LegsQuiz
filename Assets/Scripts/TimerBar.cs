@@ -10,7 +10,7 @@ public class TimerBar : MonoBehaviour
 
     [SerializeField] private float _timeByImage;
     [SerializeField] private float _timerBarChangeRate;
-    
+
 
     private float _timerBarChangeValue;
     private float _colorChangeValue;
@@ -23,6 +23,10 @@ public class TimerBar : MonoBehaviour
     private Awaitable _timeBarTask;
 
     private bool _timerIsStop;
+
+    public delegate void TimerEnd();
+
+    public event TimerEnd OnTimerEnd;
 
     private void Awake()
     {
@@ -41,12 +45,15 @@ public class TimerBar : MonoBehaviour
     {
         _timerIsStop = false;
 
-        while (_timerBar.value > 0 && !_timerIsStop)
+        while (_timerBar.value > 0.0f && !_timerIsStop)
         {
             _timerBarFill.color = Color.Lerp(_timerBarStartColor, _timerBarEndColor, Math.Abs(_timerBar.value - 1.0f));
             _timerBar.value -= _timerBarChangeValue;
             await Awaitable.WaitForSecondsAsync(_timerWaitTime);
         }
+
+        if (_timerBar.value <= 0.0f)
+            OnTimerEnd!.Invoke();
     }
 
     public void StopTimer()
