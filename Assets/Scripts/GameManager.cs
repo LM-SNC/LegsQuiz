@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using JsonModels;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Color _trueAnswerColor;
     [SerializeField] private Color _wrongAnswerColor;
 
+
+    private CancellationTokenSource _questionCancellationTokenSource;
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
@@ -130,14 +135,21 @@ public class GameManager : MonoBehaviour
     private async Awaitable StopQuestion()
     {
         _timerBar.StopTimer();
-        await _gameImageController.FaceFocus();
-        await Awaitable.WaitForSecondsAsync(1);
-
-        ChangeQuestion();
+        await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);
+        try
+        {
+            await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
+        }
+        catch (Exception e)
+        {
+            // ignored
+        }
     }
 
     private void StartGame(int gameId)
     {
+        _questionCancellationTokenSource = new CancellationTokenSource();
+        
         _score = 0;
         _gameQuestions = _allQuestions[gameId].ToList();
 
@@ -158,6 +170,7 @@ public class GameManager : MonoBehaviour
         _timerBar.StopTimer();
         _effectTime = false;
 
+        _questionCancellationTokenSource.Cancel();
         Debug.Log("Game Stop!");
     }
 
@@ -167,9 +180,10 @@ public class GameManager : MonoBehaviour
         _timerBar.StartTimer();
 
 
+        _gameImageController.LegsFocus();
+        
         var newQuestion = _gameQuestions[++_currentQuestion];
         _gameImageController.SetImage(_gameImages[newQuestion.image]);
-        _gameImageController.LegsFocus();
 
         _trueAnswerButton = Random.Range(0, 3);
 
