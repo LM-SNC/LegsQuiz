@@ -36,6 +36,26 @@ public class LegsQuizApi : IStartable
         return default;
     }
 
+    public async Awaitable<T?> SendData<T>(string condition = "")
+    {
+        using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
+        Debug.Log(_apiUrls[typeof(T)] + condition);
+
+        await www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+            return JsonUtility.FromJson<T>(www.downloadHandler.text);
+        }
+
+        return default;
+    }
+    
     public void Start()
     {
     }

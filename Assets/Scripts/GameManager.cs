@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
 
 
     private CancellationTokenSource _questionCancellationTokenSource;
+
+    private string _username = "artkyl";
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
@@ -149,8 +151,9 @@ public class GameManager : MonoBehaviour
     private void StartGame(int gameId)
     {
         _questionCancellationTokenSource = new CancellationTokenSource();
-        
         _score = 0;
+        _scoreField.SetText(_score.ToString());
+        
         _gameQuestions = _allQuestions[gameId].ToList();
 
         for (int i = 0; i < _gameQuestions.Count; i++)
