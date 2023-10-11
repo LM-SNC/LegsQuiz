@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
     [Inject] private CanvasDataManager _canvasDataManager;
 
-    [SerializeField] private TMP_Text _scoreField;
-
     [SerializeField] private Image _gameBorder;
 
     private TimerBar _timerBar;
@@ -49,6 +47,12 @@ public class GameManager : MonoBehaviour
     private CancellationTokenSource _questionCancellationTokenSource;
 
     private string _username = "artkyl";
+
+    private int _hp;
+    [SerializeField] private GameObject _heartContainer;
+    [SerializeField] private RectTransform _heartContainerRect;
+    private float _heartPart;
+
     private async void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
@@ -104,6 +108,9 @@ public class GameManager : MonoBehaviour
             _gameBorder.color = _wrongAnswerColor;
             await StopQuestion();
         };
+
+        _heartContainerRect = _heartContainer.GetComponent<RectTransform>();
+        _heartPart = _heartContainerRect.rect.height / 3.33f;
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -122,16 +129,30 @@ public class GameManager : MonoBehaviour
 
             UpdateButtonColor(button, _trueAnswerColor);
             _gameBorder.color = _trueAnswerColor;
-            _scoreField.SetText(_score.ToString());
         }
         else
         {
             UpdateButtonColor(button, _wrongAnswerColor);
             _gameBorder.color = _wrongAnswerColor;
+
+            _hp--;
+            UpdateHealPoints();
         }
 
         await StopQuestion();
         ChangeQuestion();
+    }
+
+    private async Awaitable UpdateHealPoints()
+    {
+        var position = _heartContainer.transform.position;
+        var rect = _heartContainerRect.sizeDelta;
+
+        position.y -= _heartPart * 3 - _hp;
+        rect.y -= _heartPart * 3 - _hp;
+
+        _heartContainer.transform.position = position;
+        _heartContainerRect.sizeDelta = rect;
     }
 
     private async Awaitable StopQuestion()
@@ -150,10 +171,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGame(int gameId)
     {
+        _hp = 3;
         _questionCancellationTokenSource = new CancellationTokenSource();
         _score = 0;
-        _scoreField.SetText(_score.ToString());
-        
+
         _gameQuestions = _allQuestions[gameId].ToList();
 
         for (int i = 0; i < _gameQuestions.Count; i++)
@@ -184,7 +205,7 @@ public class GameManager : MonoBehaviour
 
 
         _gameImageController.LegsFocus();
-        
+
         var newQuestion = _gameQuestions[++_currentQuestion];
         _gameImageController.SetImage(_gameImages[newQuestion.image]);
 
