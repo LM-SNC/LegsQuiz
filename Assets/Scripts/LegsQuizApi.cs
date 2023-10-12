@@ -13,7 +13,8 @@ public class LegsQuizApi : IStartable
         { typeof(Players), "https://legsquiz.hentach.ru/players" },
         { typeof(Games), "https://legsquiz.hentach.ru/games" },
         { typeof(Backgrounds), "https://legsquiz.hentach.ru/backgrounds" },
-        { typeof(Questions), "https://legsquiz.hentach.ru/questions"}
+        { typeof(Questions), "https://legsquiz.hentach.ru/questions" },
+        { typeof(Player), "https://legsquiz.hentach.ru/player" }
     };
 
     public async Awaitable<T?> GetData<T>(string condition = "")
@@ -36,10 +37,9 @@ public class LegsQuizApi : IStartable
         return default;
     }
 
-    public async Awaitable<T?> SendData<T>(string condition = "")
+    public async Awaitable SendData<T>(T data)
     {
-        using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
-        Debug.Log(_apiUrls[typeof(T)] + condition);
+        using var www = UnityWebRequest.Post(_apiUrls[typeof(T)], JsonUtility.ToJson(data), "application/json");
 
         await www.SendWebRequest();
 
@@ -50,12 +50,9 @@ public class LegsQuizApi : IStartable
         else
         {
             Debug.Log(www.downloadHandler.text);
-            return JsonUtility.FromJson<T>(www.downloadHandler.text);
         }
-
-        return default;
     }
-    
+
     public void Start()
     {
     }

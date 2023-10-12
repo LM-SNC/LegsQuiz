@@ -44,7 +44,7 @@ public class LoadingProgressBar : MonoBehaviour
             await Awaitable.WaitForSecondsAsync(0.04f);
         }
     }
-    
+
     public void CompleteItem()
     {
         _progressItems -= 1;

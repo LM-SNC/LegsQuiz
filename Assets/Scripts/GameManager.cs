@@ -48,10 +48,12 @@ public class GameManager : MonoBehaviour
 
     private string _username = "artkyl";
 
-    private int _hp;
+    private int _hp = 3;
     [SerializeField] private GameObject _heartContainer;
-    [SerializeField] private RectTransform _heartContainerRect;
+    private RectTransform _heartContainerRect;
     private float _heartPart;
+    private float _defaultHeartHeight;
+    private Vector3 _defaultHeartPosition;
 
     private async void Start()
     {
@@ -81,6 +83,10 @@ public class GameManager : MonoBehaviour
         }
 
 
+        _heartContainerRect = _heartContainer.GetComponent<RectTransform>();
+        _defaultHeartHeight = _heartContainerRect.rect.height;
+        _defaultHeartPosition = _heartContainerRect.transform.position;
+
         var games = await _legsQuizApi.GetData<Games>();
         foreach (var game in games.value)
         {
@@ -109,8 +115,12 @@ public class GameManager : MonoBehaviour
             await StopQuestion();
         };
 
-        _heartContainerRect = _heartContainer.GetComponent<RectTransform>();
-        _heartPart = _heartContainerRect.rect.height / 3.33f;
+        _legsQuizApi.SendData<Player>(new Player
+        {
+            id = "6",
+            name = "newName",
+            answersCount = 23232
+        });
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -143,35 +153,14 @@ public class GameManager : MonoBehaviour
         ChangeQuestion();
     }
 
-    private async Awaitable UpdateHealPoints()
-    {
-        var position = _heartContainer.transform.position;
-        var rect = _heartContainerRect.sizeDelta;
-
-        position.y -= _heartPart * 3 - _hp;
-        rect.y -= _heartPart * 3 - _hp;
-
-        _heartContainer.transform.position = position;
-        _heartContainerRect.sizeDelta = rect;
-    }
-
-    private async Awaitable StopQuestion()
-    {
-        _timerBar.StopTimer();
-        await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);
-        try
-        {
-            await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
-        }
-        catch (Exception e)
-        {
-            // ignored
-        }
-    }
 
     private void StartGame(int gameId)
     {
+        _heartPart = _defaultHeartHeight / 3f;
+
         _hp = 3;
+        UpdateHealPoints();
+
         _questionCancellationTokenSource = new CancellationTokenSource();
         _score = 0;
 
@@ -250,6 +239,33 @@ public class GameManager : MonoBehaviour
             highlightedColor = color,
             colorMultiplier = 1.0f
         };
+    }
+
+    private void UpdateHealPoints()
+    {
+        var position = _heartContainer.transform.position;
+        var rect = _heartContainerRect.sizeDelta;
+
+
+        position.y = _defaultHeartPosition.y - (3 - _hp) * _heartPart / 2;
+        rect.y = _defaultHeartHeight - (3 - _hp) * _heartPart;
+
+        _heartContainer.transform.position = position;
+        _heartContainerRect.sizeDelta = rect;
+    }
+
+    private async Awaitable StopQuestion()
+    {
+        _timerBar.StopTimer();
+        await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);
+        try
+        {
+            await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
+        }
+        catch (Exception e)
+        {
+            // ignored
+        }
     }
 
     private async Awaitable ProcessGameImage(string imageUrl)
