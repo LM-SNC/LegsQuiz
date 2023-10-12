@@ -15,6 +15,8 @@ public class CanvasDataManager : MonoBehaviour
     [SerializeField] private GameObject _table;
     [SerializeField] private TMP_Text _score;
 
+    private string _playerId = "1";
+    private string _playerName = "SomeName";
     public int PlayerMaxScore { get; private set; }
 
     public Games Games { get; private set; }
@@ -47,7 +49,7 @@ public class CanvasDataManager : MonoBehaviour
 
             var players = await _legsQuizApi.GetData<Players>();
 
-            foreach (var player in players.value.Take(15))
+            foreach (var player in players.value.Take(15).OrderByDescending(player => player.answersCount))
             {
                 var tableElement = Instantiate(template, _table.transform);
                 tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
@@ -57,12 +59,25 @@ public class CanvasDataManager : MonoBehaviour
             }
         }));
 
-        UpdatePlayerMaxScore(0);
+        var playerData = await _legsQuizApi.GetData<Player>($"?id=1");
+
+        _playerId = playerData.id;
+        _playerName = playerData.name;
+
+        PlayerMaxScore = playerData.answersCount;
+        _score.SetText($"Рекорд: {PlayerMaxScore}");
     }
 
     public async Awaitable UpdatePlayerMaxScore(int score)
     {
         PlayerMaxScore = score;
         _score.SetText($"Рекорд: {PlayerMaxScore}");
+
+        await _legsQuizApi.SendData(new Player
+        {
+            id = _playerId,
+            name = _playerName,
+            answersCount = score
+        });
     }
 }

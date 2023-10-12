@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     private int _trueAnswerButton;
     private bool _effectTime = false;
 
+    private int _lastGameId;
+
 
     [SerializeField] private Color _trueAnswerColor;
     [SerializeField] private Color _wrongAnswerColor;
@@ -46,14 +48,17 @@ public class GameManager : MonoBehaviour
 
     private CancellationTokenSource _questionCancellationTokenSource;
 
-    private string _username = "artkyl";
-
     private int _hp = 3;
     [SerializeField] private GameObject _heartContainer;
     private RectTransform _heartContainerRect;
     private float _heartPart;
     private float _defaultHeartHeight;
     private Vector3 _defaultHeartPosition;
+
+    private bool _isLoose;
+
+    [SerializeField] private GameObject _defeatMenu;
+    private TMP_Text _defeatMenuScore;
 
     private async void Start()
     {
@@ -86,6 +91,7 @@ public class GameManager : MonoBehaviour
         _heartContainerRect = _heartContainer.GetComponent<RectTransform>();
         _defaultHeartHeight = _heartContainerRect.rect.height;
         _defaultHeartPosition = _heartContainerRect.transform.position;
+        _heartPart = _defaultHeartHeight / 3.0f;
 
         var games = await _legsQuizApi.GetData<Games>();
         foreach (var game in games.value)
@@ -107,20 +113,31 @@ public class GameManager : MonoBehaviour
 
         _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { StopGame(); });
 
+        _buttonsHandler.AddHandler("RestartButton", async (button, canvas) => { StartGame(_lastGameId); });
+
+        _buttonsHandler.AddHandler("ResumeButton", async (button, canvas) =>
+        {
+            _currentQuestion--;
+            StartGame(_lastGameId, true);
+        });
+
         _timerBar.OnTimerEnd += async () =>
         {
+            if (_hp <= 0)
+                return;
+            
+            _hp--;
+            UpdateHealPoints();
+
             _effectTime = true;
 
             _gameBorder.color = _wrongAnswerColor;
-            await StopQuestion();
+            await EndQuestion();
+            ChangeQuestion();
         };
 
-        _legsQuizApi.SendData<Player>(new Player
-        {
-            id = "6",
-            name = "newName",
-            answersCount = 23232
-        });
+
+        _defeatMenuScore = _defeatMenu.transform.Find("Score").GetComponent<TMP_Text>();
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -149,27 +166,33 @@ public class GameManager : MonoBehaviour
             UpdateHealPoints();
         }
 
-        await StopQuestion();
+        await EndQuestion();
         ChangeQuestion();
     }
 
 
-    private void StartGame(int gameId)
+    private void StartGame(int gameId, bool saveData = false)
     {
-        _heartPart = _defaultHeartHeight / 3f;
+        _lastGameId = gameId;
+        _defeatMenu.SetActive(false);
+        _isLoose = false;
 
         _hp = 3;
         UpdateHealPoints();
 
         _questionCancellationTokenSource = new CancellationTokenSource();
-        _score = 0;
 
-        _gameQuestions = _allQuestions[gameId].ToList();
-
-        for (int i = 0; i < _gameQuestions.Count; i++)
+        if (!saveData)
         {
-            int j = Random.Range(0, _gameQuestions.Count);
-            (_gameQuestions[j], _gameQuestions[i]) = (_gameQuestions[i], _gameQuestions[j]);
+            _score = 0;
+
+            _gameQuestions = _allQuestions[gameId].ToList();
+
+            for (int i = 0; i < _gameQuestions.Count; i++)
+            {
+                int j = Random.Range(0, _gameQuestions.Count);
+                (_gameQuestions[j], _gameQuestions[i]) = (_gameQuestions[i], _gameQuestions[j]);
+            }
         }
 
 
@@ -183,12 +206,13 @@ public class GameManager : MonoBehaviour
         _timerBar.StopTimer();
         _effectTime = false;
 
-        _questionCancellationTokenSource.Cancel();
+        _questionCancellationTokenSource?.Cancel();
         Debug.Log("Game Stop!");
     }
 
     private void ChangeQuestion()
     {
+        Debug.Log($"Question {_currentQuestion}");
         _timerBar.ResetTimer();
         _timerBar.StartTimer();
 
@@ -243,6 +267,14 @@ public class GameManager : MonoBehaviour
 
     private void UpdateHealPoints()
     {
+        if (_hp <= 0)
+        {
+            StopGame();
+            _defeatMenuScore.SetText($"Отгадано ножек: {_score}");
+            _defeatMenu.SetActive(true);
+            return;
+        }
+
         var position = _heartContainer.transform.position;
         var rect = _heartContainerRect.sizeDelta;
 
@@ -254,7 +286,7 @@ public class GameManager : MonoBehaviour
         _heartContainerRect.sizeDelta = rect;
     }
 
-    private async Awaitable StopQuestion()
+    private async Awaitable EndQuestion()
     {
         _timerBar.StopTimer();
         await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);

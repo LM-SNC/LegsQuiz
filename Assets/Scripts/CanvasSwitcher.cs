@@ -14,8 +14,7 @@ public class CanvasSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ActiveCanvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)
-            .First(canvas => canvas.gameObject.activeSelf);
+        ActiveCanvas = GameObject.Find("LoadingCanvas").GetComponent<Canvas>();
 
 
         foreach (var canvasBinder in _canvasBinders)
@@ -33,14 +32,19 @@ public class CanvasSwitcher : MonoBehaviour
 
     public void Switch(string name)
     {
+        ActiveCanvas.gameObject.SetActive(false);
+
         foreach (var canvasBinder in _canvasBinders)
         {
-            if (canvasBinder.Canvas.name != name) continue;
-            
-            ActiveCanvas.gameObject.SetActive(false);
-            canvasBinder.Canvas.gameObject.SetActive(true);
+            if (canvasBinder.Canvas.name != name)
+            {
+                canvasBinder.Canvas.gameObject.SetActive(false);
+                continue;
+            }
+
             ActiveCanvas = canvasBinder.Canvas;
-            
+            ActiveCanvas.gameObject.SetActive(true);
+
             break;
         }
     }

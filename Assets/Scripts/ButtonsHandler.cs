@@ -14,7 +14,7 @@ public class ButtonsHandler : MonoBehaviour, IStartable
         
         foreach (var button in allButtons)
         {
-            if (button.tag == "UnListenable")
+            if (button.CompareTag("UnListenable"))
                 continue;
 
             var canvas = button.transform.root.GetComponent<Canvas>();
@@ -24,10 +24,6 @@ public class ButtonsHandler : MonoBehaviour, IStartable
             button.onClick.AddListener((async () =>
             {
                 Debug.Log($"Call :: {button.name}");
-
-                // _activeCanvas.gameObject.SetActive(false);
-                // canvasBinder.Canvas.gameObject.SetActive(true);
-                // _activeCanvas = canvasBinder.Canvas;
 
                 await HandleButtonClick(button, canvas);
             }));
