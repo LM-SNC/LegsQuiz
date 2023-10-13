@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
         {
             if (_hp <= 0)
                 return;
-            
+
             _hp--;
             UpdateHealPoints();
 
@@ -184,6 +184,7 @@ public class GameManager : MonoBehaviour
 
         if (!saveData)
         {
+            _currentQuestion = 0;
             _score = 0;
 
             _gameQuestions = _allQuestions[gameId].ToList();
