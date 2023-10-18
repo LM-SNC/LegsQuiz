@@ -51,7 +51,11 @@ public class BackgroundsSwitcher : MonoBehaviour
 
     private async Awaitable DownloadBackground(string url, int gameId)
     {
-        var texture = await WebUtils.DownloadImage(url);
+        var textureBytes = await WebUtils.DownloadImage(url, 999);
+        
+        var texture = new Texture2D(1, 1);
+        texture.LoadImage(textureBytes);
+        
         _backgrounds[gameId] = texture;
         _progressBar.CompleteItem();
     }

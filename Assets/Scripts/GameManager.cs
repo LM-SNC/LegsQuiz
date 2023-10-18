@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private List<Questions.Question> _gameQuestions;
 
 
-    private Dictionary<string, Texture2D> _gameImages;
+    private Dictionary<string, byte[]> _gameImages;
 
     [SerializeField] private GameObject _buttonsContainer;
     private List<TMP_Text> _answerButtonTextFields;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
         _allQuestions = new();
         _gameQuestions = new();
-        _gameImages = new();
+        _gameImages = new(150);
         _answerButtonTextFields = new();
         _answerButtons = new();
 
@@ -309,7 +309,10 @@ public class GameManager : MonoBehaviour
         }
 
         _imagesInProcess++;
-        _gameImages[imageUrl] = await WebUtils.DownloadImage(imageUrl);
+        //_gameImages[imageUrl] =
+        var textureBytes = await WebUtils.DownloadImage(imageUrl, 999);
+        _gameImages[imageUrl] = textureBytes;
+
         _progressBar.CompleteItem();
 
         _imagesInProcess--;

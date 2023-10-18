@@ -45,9 +45,11 @@ public class GameImageController : MonoBehaviour
         }
     }
 
-    public void SetImage(Texture2D texture2D)
+    public void SetImage(byte[] image)
     {
-        _gameImage.texture = texture2D;
+        var texture = new Texture2D(1, 1);
+        texture.LoadImage(image);
+        _gameImage.texture = texture;
     }
     
     public void LegsFocus()

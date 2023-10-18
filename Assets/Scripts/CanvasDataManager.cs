@@ -38,6 +38,11 @@ public class CanvasDataManager : MonoBehaviour
         {
             if (DateTime.Now < _nextUpdate) return;
 
+            var players = await _legsQuizApi.GetData<Players>();
+
+            if (players == null)
+                return;
+            
             _nextUpdate = DateTime.Now.AddMinutes(5);
 
             for (int i = 2; i < _table.transform.childCount; i++)
@@ -47,7 +52,6 @@ public class CanvasDataManager : MonoBehaviour
 
             var template = _table.transform.Find("Template");
 
-            var players = await _legsQuizApi.GetData<Players>();
 
             foreach (var player in players.value.Take(15).OrderByDescending(player => player.answersCount))
             {
