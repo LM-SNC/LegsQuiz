@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private CancellationTokenSource _questionCancellationTokenSource;
 
-    private int _hp = 3;
+    private int _hp = 1;
     [SerializeField] private GameObject _heartContainer;
     private RectTransform _heartContainerRect;
     private float _heartPart;
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _defeatMenu;
     private TMP_Text _defeatMenuScore;
+
 
     private async void Start()
     {
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
 
         _buttonsHandler.AddHandler("ResumeButton", async (button, canvas) =>
         {
-            _currentQuestion--;
+            _currentQuestion -= 1;
             StartGame(_lastGameId, true);
         });
 
@@ -167,7 +168,9 @@ public class GameManager : MonoBehaviour
         }
 
         await EndQuestion();
-        ChangeQuestion();
+        
+        if (_hp > 0)
+            ChangeQuestion();
     }
 
 
@@ -180,6 +183,7 @@ public class GameManager : MonoBehaviour
         _hp = 3;
         UpdateHealPoints();
 
+        _questionCancellationTokenSource?.Dispose();
         _questionCancellationTokenSource = new CancellationTokenSource();
 
         if (!saveData)
@@ -205,6 +209,7 @@ public class GameManager : MonoBehaviour
     private void StopGame()
     {
         _timerBar.StopTimer();
+
         _effectTime = false;
 
         _questionCancellationTokenSource?.Cancel();
@@ -214,6 +219,7 @@ public class GameManager : MonoBehaviour
     private void ChangeQuestion()
     {
         Debug.Log($"Question {_currentQuestion}");
+        
         _timerBar.ResetTimer();
         _timerBar.StartTimer();
 

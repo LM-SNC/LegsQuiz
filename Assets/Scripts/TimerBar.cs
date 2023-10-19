@@ -52,7 +52,7 @@ public class TimerBar : MonoBehaviour
             await Awaitable.WaitForSecondsAsync(_timerWaitTime);
         }
 
-        if (_timerBar.value <= 0.0f)
+        if (!_timerIsStop)
             OnTimerEnd!.Invoke();
     }
 

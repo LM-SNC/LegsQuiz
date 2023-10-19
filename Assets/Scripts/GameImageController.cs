@@ -31,7 +31,7 @@ public class GameImageController : MonoBehaviour
         var time = 0.0f;
         while (time <= 1.0f && !cancellationToken.IsCancellationRequested)
         {
-            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time);
+            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time) + 0.001f * Time.deltaTime;
             _gameImage.transform.localPosition = Vector3.Lerp(localPosition, endPosition, time);
             _gameImage.transform.localScale = Vector3.Lerp(localScale, new Vector3(1, 1, 1), time);
             try
