@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
 
         await EndQuestion();
         
-        if (_hp > 0)
+        if (_hp > 0 && !_questionCancellationTokenSource.Token.IsCancellationRequested)
             ChangeQuestion();
     }
 
@@ -297,6 +297,7 @@ public class GameManager : MonoBehaviour
     {
         _timerBar.StopTimer();
         await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);
+        
         try
         {
             await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
