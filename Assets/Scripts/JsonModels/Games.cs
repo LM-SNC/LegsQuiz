@@ -6,17 +6,13 @@ namespace JsonModels
     [Serializable]
     public class Games
     {
-        public List<Game> value;
-        public List<object> formatters;
-        public List<object> contentTypes;
-        public object declaredType;
-        public int statusCode;
+        public List<Game> Value;
     }
-
+    
     [Serializable]
     public class Game
     {
-        public int id;
-        public string name;
+        public int Id;
+        public string Name;
     }
 }

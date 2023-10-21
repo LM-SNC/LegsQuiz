@@ -13,19 +13,18 @@ public class GameManager : MonoBehaviour
 {
     [Inject] private LegsQuizApi _legsQuizApi;
     [Inject] private ButtonsHandler _buttonsHandler;
-    [Inject] private LoadingProgressBar _progressBar;
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
     [Inject] private CanvasDataManager _canvasDataManager;
-    
+
 
     private TimerBar _timerBar;
     private GameImageController _gameImageController;
 
-    private Dictionary<int, List<Questions.Question>> _allQuestions;
-    private List<Questions.Question> _gameQuestions;
+    private Dictionary<int, List<Question>> _allQuestions;
+    private List<Question> _gameQuestions;
 
 
-    private Dictionary<string, byte[]> _gameImages;
+    private Dictionary<string, string> _gameImages;
 
     [SerializeField] private GameObject _buttonsContainer;
     private List<TMP_Text> _answerButtonTextFields;
@@ -61,8 +60,8 @@ public class GameManager : MonoBehaviour
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
-        
-        
+
+
         _allQuestions = new();
         _gameQuestions = new();
         _gameImages = new(150);
@@ -85,20 +84,19 @@ public class GameManager : MonoBehaviour
             _answerButtonTextFields.Add(textComponent);
         }
 
-        var games = await _legsQuizApi.GetData<Games>(tryCount: 999);
-        
-        foreach (var game in games.value)
-        {
-            _allQuestions[game.id] = new List<Questions.Question>();
-            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={game.id}", tryCount: 999)).value;
-            _progressBar.AddProgressItems(questions.Count);
+        var questionsJson = Resources.Load<TextAsset>(@"Data/questions");
+        Debug.Log(questionsJson.text);
+        var questions = JsonUtility.FromJson<Questions>(questionsJson.text);
 
-            foreach (var question in questions)
-            {
-                Debug.Log("Question image: " + question.image);
-                _allQuestions[game.id].Add(question);
-                ProcessGameImage(question.image);
-            }
+        for (int i = 0; i < 4; i++)
+        {
+            _allQuestions[i] = new List<Question>();
+        }
+        
+        foreach (var question in questions.Value)
+        {
+            _allQuestions[question.GameId].Add(question);
+            await ProcessGameImage(question.Image);
         }
 
         _buttonsHandler.AddHandler("StartButton",
@@ -123,7 +121,7 @@ public class GameManager : MonoBehaviour
             UpdateHealPoints();
 
             _effectTime = true;
-            
+
             await EndQuestion();
             ChangeQuestion();
         };
@@ -139,7 +137,7 @@ public class GameManager : MonoBehaviour
 
         _effectTime = true;
 
-        if (answer == _gameQuestions[_currentQuestion].answer)
+        if (answer == _gameQuestions[_currentQuestion].Answer)
         {
             if (++_score > _canvasDataManager.PlayerMaxScore)
             {
@@ -157,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
 
         await EndQuestion();
-        
+
         if (_hp > 0 && !_questionCancellationTokenSource.Token.IsCancellationRequested)
             ChangeQuestion();
     }
@@ -165,7 +163,6 @@ public class GameManager : MonoBehaviour
 
     private void StartGame(int gameId, bool saveData = false)
     {
-
         _lastGameId = gameId;
         _defeatMenu.SetActive(false);
         _isLoose = false;
@@ -209,7 +206,7 @@ public class GameManager : MonoBehaviour
     private void ChangeQuestion()
     {
         Debug.Log($"Question {_currentQuestion}");
-        
+
         _timerBar.ResetTimer();
         _timerBar.StartTimer();
 
@@ -217,7 +214,7 @@ public class GameManager : MonoBehaviour
         _gameImageController.LegsFocus();
 
         var newQuestion = _gameQuestions[++_currentQuestion];
-        _gameImageController.SetImage(_gameImages[newQuestion.image]);
+        _gameImageController.SetImage(_gameImages[newQuestion.Image]);
 
         _trueAnswerButton = Random.Range(0, 3);
 
@@ -225,9 +222,9 @@ public class GameManager : MonoBehaviour
 
         while (randomNames.Count < 4)
         {
-            var name = _gameQuestions[Random.Range(0, _gameQuestions.Count)].answer;
+            var name = _gameQuestions[Random.Range(0, _gameQuestions.Count)].Answer;
 
-            if (!randomNames.Contains(name) && name != newQuestion.answer)
+            if (!randomNames.Contains(name) && name != newQuestion.Answer)
                 randomNames.Add(name);
         }
 
@@ -237,7 +234,7 @@ public class GameManager : MonoBehaviour
 
             if (i == _trueAnswerButton)
             {
-                _answerButtonTextFields[i].text = newQuestion.answer;
+                _answerButtonTextFields[i].text = newQuestion.Answer;
                 continue;
             }
 
@@ -269,8 +266,8 @@ public class GameManager : MonoBehaviour
             _defeatMenu.SetActive(true);
             return;
         }
-        
-        _heart.texture = _heartState[Math.Abs(_hp-1)].texture;
+
+        _heart.texture = _heartState[Math.Abs(_hp - 1)].texture;
     }
 
     private async Awaitable EndQuestion()
@@ -282,7 +279,7 @@ public class GameManager : MonoBehaviour
         {
             await Awaitable.WaitForSecondsAsync(0.5f);
         }
-        
+
         try
         {
             await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
@@ -295,18 +292,7 @@ public class GameManager : MonoBehaviour
 
     private async Awaitable ProcessGameImage(string imageUrl)
     {
-        while (_imagesInProcess >= 15)
-        {
-            await Awaitable.WaitForSecondsAsync(0.5f);
-        }
-
-        _imagesInProcess++;
-        //_gameImages[imageUrl] =
-        var textureBytes = await WebUtils.DownloadImage(imageUrl, 999);
-        _gameImages[imageUrl] = textureBytes;
-
-        _progressBar.CompleteItem();
-
-        _imagesInProcess--;
+        Debug.Log("Process: " + imageUrl);
+        _gameImages[imageUrl] = imageUrl;
     }
 }

@@ -70,10 +70,9 @@ public class GameImageController : MonoBehaviour
         IsMoving = false;
     }
 
-    public void SetImage(byte[] image)
+    public void SetImage(string image)
     {
-        var texture = new Texture2D(1, 1);
-        texture.LoadImage(image);
+        var texture = Resources.Load<Texture2D>(image);
         _gameImage.texture = texture;
     }
 

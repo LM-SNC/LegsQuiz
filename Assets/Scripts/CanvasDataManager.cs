@@ -19,18 +19,18 @@ public class CanvasDataManager : MonoBehaviour
     private string _playerName = "SomeName";
     public int PlayerMaxScore { get; private set; }
 
-    public Games Games { get; private set; }
+    public List<Game> GamesList { get; private set; }
 
     private DateTime _nextUpdate = DateTime.Now;
 
     // Start is called before the first frame update
     private async void Start()
     {
-        Games = await _legsQuizApi.GetData<Games>();
+        var gamesJson = Resources.Load<TextAsset>(@"Data/games");
+        Debug.Log(gamesJson.text);
+        GamesList = JsonUtility.FromJson<Games>(gamesJson.text).Value;
 
-        var options = Games.value.Select(value => value.name).ToList();
-
-
+        var options = GamesList.Select(value => value.Name).ToList();
         _customDropDown.AddOptions(options);
 
 
@@ -42,7 +42,7 @@ public class CanvasDataManager : MonoBehaviour
 
             if (players == null)
                 return;
-            
+
             _nextUpdate = DateTime.Now.AddMinutes(5);
 
             for (int i = 2; i < _table.transform.childCount; i++)

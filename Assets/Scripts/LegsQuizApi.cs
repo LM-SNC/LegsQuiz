@@ -11,9 +11,9 @@ public class LegsQuizApi : IStartable
     private Dictionary<Type, string> _apiUrls = new()
     {
         { typeof(Players), "https://legsquiz.hentach.ru/players" },
-        { typeof(Games), "https://legsquiz.hentach.ru/games" },
+        /*{ typeof(Games), "https://legsquiz.hentach.ru/games" },
         { typeof(Backgrounds), "https://legsquiz.hentach.ru/backgrounds" },
-        { typeof(Questions), "https://legsquiz.hentach.ru/questions" },
+        { typeof(Questions), "https://legsquiz.hentach.ru/questions" },*/
         { typeof(Player), "https://legsquiz.hentach.ru/player" }
     };
 

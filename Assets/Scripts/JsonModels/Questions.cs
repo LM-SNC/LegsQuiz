@@ -6,20 +6,17 @@ namespace JsonModels
     [Serializable]
     public class Questions
     {
-        public List<Question> value;
-        public List<object> formatters;
-        public List<object> contentTypes;
-        public object declaredType;
-        public int statusCode;
+        public List<Question> Value;
+    }
+    
+    [Serializable]
+    public class Question
+    {
+        public int Id;
+        public int GameId;
 
-        [Serializable]
-        public class Question
-        {
-            public int id;
-            public int gameId;
-            public string text;
-            public string image;
-            public string answer;
-        }
+        public string Text;
+        public string Image;
+        public string Answer;
     }
 }

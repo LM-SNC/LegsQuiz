@@ -14,7 +14,7 @@ public class CanvasSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ActiveCanvas = GameObject.Find("LoadingCanvas").GetComponent<Canvas>();
+        ActiveCanvas = GameObject.Find("MainMenuCanvas").GetComponent<Canvas>();
 
 
         foreach (var canvasBinder in _canvasBinders)

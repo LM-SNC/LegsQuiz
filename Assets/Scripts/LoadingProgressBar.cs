@@ -41,7 +41,7 @@ public class LoadingProgressBar : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             _slider.value += valueByIteration;
-            await Awaitable.WaitForSecondsAsync(0.025f);
+            await Awaitable.WaitForSecondsAsync(0.002f);
         }
     }
 
@@ -55,7 +55,7 @@ public class LoadingProgressBar : MonoBehaviour
         if (_progressItems <= 0)
         {
             _canvasSwitcher.Switch("MainMenuCanvas");
-            OnResourcesLoaded!.Invoke();
+            OnResourcesLoaded?.Invoke();
         }
     }
 }
