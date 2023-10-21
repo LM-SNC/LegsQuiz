@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
     [Inject] private LoadingProgressBar _progressBar;
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
     [Inject] private CanvasDataManager _canvasDataManager;
-
-    [SerializeField] private Image _gameBorder;
+    
 
     private TimerBar _timerBar;
     private GameImageController _gameImageController;
@@ -65,7 +64,8 @@ public class GameManager : MonoBehaviour
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
-
+        
+        
         _allQuestions = new();
         _gameQuestions = new();
         _gameImages = new(150);
@@ -94,11 +94,12 @@ public class GameManager : MonoBehaviour
         _defaultHeartPosition = _heartContainerRect.transform.position;
         _heartPart = _defaultHeartHeight / 3.0f;
 
-        var games = await _legsQuizApi.GetData<Games>();
+        var games = await _legsQuizApi.GetData<Games>(tryCount: 999);
+        
         foreach (var game in games.value)
         {
             _allQuestions[game.id] = new List<Questions.Question>();
-            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={game.id}")).value;
+            var questions = (await _legsQuizApi.GetData<Questions>($"?gameid={game.id}", tryCount: 999)).value;
             _progressBar.AddProgressItems(questions.Count);
 
             foreach (var question in questions)
@@ -131,8 +132,7 @@ public class GameManager : MonoBehaviour
             UpdateHealPoints();
 
             _effectTime = true;
-
-            _gameBorder.color = _wrongAnswerColor;
+            
             await EndQuestion();
             ChangeQuestion();
         };
@@ -156,12 +156,10 @@ public class GameManager : MonoBehaviour
             }
 
             UpdateButtonColor(button, _trueAnswerColor);
-            _gameBorder.color = _trueAnswerColor;
         }
         else
         {
             UpdateButtonColor(button, _wrongAnswerColor);
-            _gameBorder.color = _wrongAnswerColor;
 
             _hp--;
             UpdateHealPoints();
@@ -233,8 +231,6 @@ public class GameManager : MonoBehaviour
 
         var randomNames = new List<string>();
 
-        _gameBorder.color = Color.white;
-
         while (randomNames.Count < 4)
         {
             var name = _gameQuestions[Random.Range(0, _gameQuestions.Count)].answer;
@@ -296,7 +292,12 @@ public class GameManager : MonoBehaviour
     private async Awaitable EndQuestion()
     {
         _timerBar.StopTimer();
-        await _gameImageController.FaceFocus(_questionCancellationTokenSource.Token);
+        StartCoroutine(_gameImageController.FaceFocus(_questionCancellationTokenSource.Token));
+
+        while (_gameImageController.IsMoving)
+        {
+            await Awaitable.WaitForSecondsAsync(0.5f);
+        }
         
         try
         {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class BackgroundsSwitcher : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            var gameBackgrounds = await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}");
+            var gameBackgrounds = await _legsQuizApi.GetData<JsonModels.Backgrounds>($"?gameid={i}", 999);
             if (gameBackgrounds.value == null || gameBackgrounds.value.Count < 1)
                 continue;
 
@@ -49,7 +50,7 @@ public class BackgroundsSwitcher : MonoBehaviour
             _backgrounds[SelectedGame];
     }
 
-    private async Awaitable DownloadBackground(string url, int gameId)
+    private async Task DownloadBackground(string url, int gameId)
     {
         var textureBytes = await WebUtils.DownloadImage(url, 999);
         

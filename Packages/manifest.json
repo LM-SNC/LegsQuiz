@@ -2,7 +2,7 @@
   "dependencies": {
     "com.coffee.softmask-for-ugui": "https://github.com/mob-sakai/SoftMaskForUGUI.git#1.0.0",
     "com.gustavopsantos.reflex": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#4.5.0",
-    "com.unity.collab-proxy": "2.0.7",
+    "com.unity.collab-proxy": "2.1.0",
     "com.unity.feature.development": "1.0.2",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.8.2",

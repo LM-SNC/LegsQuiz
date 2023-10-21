@@ -17,21 +17,23 @@ public class LegsQuizApi : IStartable
         { typeof(Player), "https://legsquiz.hentach.ru/player" }
     };
 
-    public async Awaitable<T?> GetData<T>(string condition = "")
+    public async Awaitable<T?> GetData<T>(string condition = "", int tryCount = 1)
     {
-        using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
-        Debug.Log(_apiUrls[typeof(T)] + condition);
-
-        await www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        for (int i = 0; i < tryCount; i++)
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log(www.downloadHandler.text);
-            return JsonUtility.FromJson<T>(www.downloadHandler.text);
+            using var www = UnityWebRequest.Get(_apiUrls[typeof(T)] + condition);
+            Debug.Log(_apiUrls[typeof(T)] + condition);
+            await www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+                return JsonUtility.FromJson<T>(www.downloadHandler.text);
+            }
         }
 
         return default;
