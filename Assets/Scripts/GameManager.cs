@@ -48,11 +48,8 @@ public class GameManager : MonoBehaviour
     private CancellationTokenSource _questionCancellationTokenSource;
 
     private int _hp = 1;
-    [SerializeField] private GameObject _heartContainer;
-    private RectTransform _heartContainerRect;
-    private float _heartPart;
-    private float _defaultHeartHeight;
-    private Vector3 _defaultHeartPosition;
+    [SerializeField] private RawImage _heart;
+    [SerializeField] private Sprite[] _heartState;
 
     private bool _isLoose;
 
@@ -87,12 +84,6 @@ public class GameManager : MonoBehaviour
             _answerButtons.Add(button);
             _answerButtonTextFields.Add(textComponent);
         }
-
-
-        _heartContainerRect = _heartContainer.GetComponent<RectTransform>();
-        _defaultHeartHeight = _heartContainerRect.rect.height;
-        _defaultHeartPosition = _heartContainerRect.transform.position;
-        _heartPart = _defaultHeartHeight / 3.0f;
 
         var games = await _legsQuizApi.GetData<Games>(tryCount: 999);
         
@@ -174,6 +165,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame(int gameId, bool saveData = false)
     {
+
         _lastGameId = gameId;
         _defeatMenu.SetActive(false);
         _isLoose = false;
@@ -277,16 +269,8 @@ public class GameManager : MonoBehaviour
             _defeatMenu.SetActive(true);
             return;
         }
-
-        var position = _heartContainer.transform.position;
-        var rect = _heartContainerRect.sizeDelta;
-
-
-        position.y = _defaultHeartPosition.y - (3 - _hp) * _heartPart / 2;
-        rect.y = _defaultHeartHeight - (3 - _hp) * _heartPart;
-
-        _heartContainer.transform.position = position;
-        _heartContainerRect.sizeDelta = rect;
+        
+        _heart.texture = _heartState[Math.Abs(_hp-1)].texture;
     }
 
     private async Awaitable EndQuestion()
