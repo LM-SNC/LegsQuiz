@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     private List<TMP_Text> _answerButtonTextFields;
     private List<Button> _answerButtons;
 
-    private int _currentQuestion = -1;
+    [SerializeField] private int _currentQuestion = -1;
     private int _score = 0;
 
     private int _imagesInProcess;
@@ -53,7 +53,9 @@ public class GameManager : MonoBehaviour
     private bool _isLoose;
 
     [SerializeField] private GameObject _defeatMenu;
+    [SerializeField] private GameObject _winMenu;
     private TMP_Text _defeatMenuScore;
+    private TMP_Text _winMenuScore;
 
 
     private async void Start()
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
         {
             _allQuestions[i] = new List<Question>();
         }
-        
+
         foreach (var question in questions.Value)
         {
             _allQuestions[question.GameId].Add(question);
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
 
 
         _defeatMenuScore = _defeatMenu.transform.Find("Score").GetComponent<TMP_Text>();
+        _winMenuScore = _winMenu.transform.Find("Score").GetComponent<TMP_Text>();
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -165,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         _lastGameId = gameId;
         _defeatMenu.SetActive(false);
+        _winMenu.SetActive(false);
         _isLoose = false;
 
         _hp = 3;
@@ -207,13 +211,21 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Question {_currentQuestion}");
 
+        if (++_currentQuestion >= _gameQuestions.Count)
+        {
+            StopGame();
+            _winMenuScore.SetText($"Отгадано ножек: {_score}");
+            _winMenu.SetActive(true);
+            return;
+        }
+
         _timerBar.ResetTimer();
         _timerBar.StartTimer();
 
 
         _gameImageController.LegsFocus();
 
-        var newQuestion = _gameQuestions[++_currentQuestion];
+        var newQuestion = _gameQuestions[_currentQuestion];
         _gameImageController.SetImage(_gameImages[newQuestion.Image]);
 
         _trueAnswerButton = Random.Range(0, 3);
