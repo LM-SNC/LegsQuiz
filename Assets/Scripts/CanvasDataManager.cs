@@ -5,11 +5,12 @@ using JsonModels;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class CanvasDataManager : MonoBehaviour
 {
     [Inject] private ButtonsHandler _buttonsHandler;
-    [Inject] private LegsQuizApi _legsQuizApi;
+    //[Inject] private LegsQuizApi _legsQuizApi;
 
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
@@ -20,8 +21,8 @@ public class CanvasDataManager : MonoBehaviour
     public int PlayerMaxScore { get; private set; }
 
     public List<Game> GamesList { get; private set; }
+    
 
-    private DateTime _nextUpdate = DateTime.Now;
 
     // Start is called before the first frame update
     private async void Start()
@@ -33,42 +34,56 @@ public class CanvasDataManager : MonoBehaviour
         var options = GamesList.Select(value => value.Name).ToList();
         _customDropDown.AddOptions(options);
 
-
-        _buttonsHandler.AddHandler("LeaderBoardButton", (async (button, canvas) =>
+        var template = _table.transform.Find("Template");
+        
+        YandexGame.onGetLeaderboard += data =>
         {
-            if (DateTime.Now < _nextUpdate) return;
-
-            var players = await _legsQuizApi.GetData<Players>();
-
-            if (players == null)
-                return;
-
-            _nextUpdate = DateTime.Now.AddMinutes(5);
-
             for (int i = 2; i < _table.transform.childCount; i++)
             {
                 Destroy(_table.transform.GetChild(i).gameObject);
             }
 
-            var template = _table.transform.Find("Template");
-
-
-            foreach (var player in players.value.Take(15).OrderByDescending(player => player.answersCount))
+            foreach (var lbPlayerData in data.players)
             {
                 var tableElement = Instantiate(template, _table.transform);
-                tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
-                tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(player.answersCount.ToString());
-
+                tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(lbPlayerData.name);
+                tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(lbPlayerData.score.ToString());
                 tableElement.gameObject.SetActive(true);
             }
+        };
+
+        _buttonsHandler.AddHandler("LeaderBoardButton", (async (button, canvas) =>
+        {
+            YandexGame.GetLeaderboard("top", 15, 15, 6, "nonePhoto");
+
+            // _nextUpdate = DateTime.Now.AddMinutes(5);
+            //
+            // for (int i = 2; i < _table.transform.childCount; i++)
+            // {
+            //     Destroy(_table.transform.GetChild(i).gameObject);
+            // }
+            //
+            // var template = _table.transform.Find("Template");
+            //
+            //
+            // foreach (var player in players.value.Take(15).OrderByDescending(player => player.answersCount))
+            // {
+            //     var tableElement = Instantiate(template, _table.transform);
+            //     tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
+            //     tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(player.answersCount.ToString());
+            //
+            //     tableElement.gameObject.SetActive(true);
+            // }
         }));
 
-        var playerData = await _legsQuizApi.GetData<Player>($"?id=1");
+        // var playerData = await _legsQuizApi.GetData<Player>($"?id=1");
+        //
+        // _playerId = playerData.id;
+        // _playerName = playerData.name;
+        //
+        // PlayerMaxScore = playerData.answersCount;
 
-        _playerId = playerData.id;
-        _playerName = playerData.name;
-
-        PlayerMaxScore = playerData.answersCount;
+        PlayerMaxScore = YandexGame.savesData.MaxScore;
         _score.SetText($"Рекорд: {PlayerMaxScore}");
     }
 
@@ -77,11 +92,14 @@ public class CanvasDataManager : MonoBehaviour
         PlayerMaxScore = score;
         _score.SetText($"Рекорд: {PlayerMaxScore}");
 
-        await _legsQuizApi.SendData(new Player
-        {
-            id = _playerId,
-            name = _playerName,
-            answersCount = score
-        });
+        YandexGame.savesData.MaxScore = score;
+        YandexGame.SaveProgress();
+
+        // await _legsQuizApi.SendData(new Player
+        // {
+        //     id = _playerId,
+        //     name = _playerName,
+        //     answersCount = score
+        // });
     }
 }

@@ -7,6 +7,7 @@ using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -56,6 +57,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _winMenu;
     private TMP_Text _defeatMenuScore;
     private TMP_Text _winMenuScore;
+
+    private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
+
+    private void Rewarded(int id)
+    {
+        _currentQuestion -= 1;
+        StartGame(_lastGameId, true);
+    }
+
+    private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
 
     private async void Start()
@@ -108,11 +119,7 @@ public class GameManager : MonoBehaviour
 
         _buttonsHandler.AddHandler("RestartButton", async (button, canvas) => { StartGame(_lastGameId); });
 
-        _buttonsHandler.AddHandler("ResumeButton", async (button, canvas) =>
-        {
-            _currentQuestion -= 1;
-            StartGame(_lastGameId, true);
-        });
+        _buttonsHandler.AddHandler("ResumeButton", async (button, canvas) => { YandexGame.RewVideoShow(0); });
 
         _timerBar.OnTimerEnd += async () =>
         {
@@ -142,6 +149,9 @@ public class GameManager : MonoBehaviour
 
         if (answer == _gameQuestions[_currentQuestion].Answer)
         {
+            YandexGame.NewLeaderboardScores("top", ++YandexGame.savesData.AllTimeScore);
+            YandexGame.SaveProgress();
+
             if (++_score > _canvasDataManager.PlayerMaxScore)
             {
                 _canvasDataManager.UpdatePlayerMaxScore(_score);
