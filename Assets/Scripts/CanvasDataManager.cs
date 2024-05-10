@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JsonModels;
@@ -10,7 +9,6 @@ using YG;
 public class CanvasDataManager : MonoBehaviour
 {
     [Inject] private ButtonsHandler _buttonsHandler;
-    //[Inject] private LegsQuizApi _legsQuizApi;
 
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
@@ -21,7 +19,6 @@ public class CanvasDataManager : MonoBehaviour
     public int PlayerMaxScore { get; private set; }
 
     public List<Game> GamesList { get; private set; }
-    
 
 
     // Start is called before the first frame update
@@ -34,8 +31,10 @@ public class CanvasDataManager : MonoBehaviour
         var options = GamesList.Select(value => value.Name).ToList();
         _customDropDown.AddOptions(options);
 
-        var template = _table.transform.Find("Template");
-        
+
+        _buttonsHandler.AddHandler("LeaderBoardButton",
+            (async (button, canvas) => { YandexGame.GetLeaderboard("top", 15, 15, 6, "nonePhoto"); }));
+
         YandexGame.onGetLeaderboard += data =>
         {
             for (int i = 2; i < _table.transform.childCount; i++)
@@ -43,6 +42,7 @@ public class CanvasDataManager : MonoBehaviour
                 Destroy(_table.transform.GetChild(i).gameObject);
             }
 
+            var template = _table.transform.Find("Template");
             foreach (var lbPlayerData in data.players)
             {
                 var tableElement = Instantiate(template, _table.transform);
@@ -51,37 +51,6 @@ public class CanvasDataManager : MonoBehaviour
                 tableElement.gameObject.SetActive(true);
             }
         };
-
-        _buttonsHandler.AddHandler("LeaderBoardButton", (async (button, canvas) =>
-        {
-            YandexGame.GetLeaderboard("top", 15, 15, 6, "nonePhoto");
-
-            // _nextUpdate = DateTime.Now.AddMinutes(5);
-            //
-            // for (int i = 2; i < _table.transform.childCount; i++)
-            // {
-            //     Destroy(_table.transform.GetChild(i).gameObject);
-            // }
-            //
-            // var template = _table.transform.Find("Template");
-            //
-            //
-            // foreach (var player in players.value.Take(15).OrderByDescending(player => player.answersCount))
-            // {
-            //     var tableElement = Instantiate(template, _table.transform);
-            //     tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(player.name);
-            //     tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(player.answersCount.ToString());
-            //
-            //     tableElement.gameObject.SetActive(true);
-            // }
-        }));
-
-        // var playerData = await _legsQuizApi.GetData<Player>($"?id=1");
-        //
-        // _playerId = playerData.id;
-        // _playerName = playerData.name;
-        //
-        // PlayerMaxScore = playerData.answersCount;
 
         PlayerMaxScore = YandexGame.savesData.MaxScore;
         _score.SetText($"Рекорд: {PlayerMaxScore}");
@@ -94,12 +63,5 @@ public class CanvasDataManager : MonoBehaviour
 
         YandexGame.savesData.MaxScore = score;
         YandexGame.SaveProgress();
-
-        // await _legsQuizApi.SendData(new Player
-        // {
-        //     id = _playerId,
-        //     name = _playerName,
-        //     answersCount = score
-        // });
     }
 }

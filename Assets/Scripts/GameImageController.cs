@@ -26,32 +26,6 @@ public class GameImageController : MonoBehaviour
         _imageContainerRectTransform = _gameImage.transform.parent.GetComponent<RectTransform>();
     }
 
-    /*public async Awaitable FaceFocus(CancellationToken cancellationToken = default (CancellationToken))
-    {
-        var localPosition = _gameImage.transform.localPosition;
-        var localScale = _gameImage.transform.localScale;
-
-        var endPosition = localPosition;
-
-        endPosition.y = -((_gameImage.rectTransform.rect.height - _imageContainerRectTransform.rect.height) / 2);
-
-        var time = 0.0f;
-        while (time <= 1.0f && !cancellationToken.IsCancellationRequested)
-        {
-            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time);
-            _gameImage.transform.localPosition = Vector3.Lerp(localPosition, endPosition, time);
-            _gameImage.transform.localScale = Vector3.Lerp(localScale, new Vector3(1, 1, 1), time);
-            try
-            {
-                await Awaitable.WaitForSecondsAsync(_animationRate, cancellationToken);
-            }
-            catch (Exception e)
-            {
-                // ignored
-            }
-        }
-    }*/
-
     public IEnumerator FaceFocus(CancellationToken cancellationToken = default(CancellationToken))
     {
         IsMoving = true;

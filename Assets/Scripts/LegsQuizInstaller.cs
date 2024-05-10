@@ -18,8 +18,7 @@ public class LegsQuizInstaller : MonoBehaviour, IInstaller
         descriptor.AddInstance(_backgroundsSwitcher);
         descriptor.AddInstance(_canvasDataManager);
         descriptor.AddInstance(_gameManager);
-
-        descriptor.AddSingleton(typeof(LegsQuizApi));
+        
         //descriptor.AddSingleton(typeof(ButtonsHandler), typeof(IStartable));
     }
 }

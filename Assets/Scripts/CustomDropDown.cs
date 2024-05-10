@@ -8,8 +8,6 @@ using UnityEngine.UI;
 [Serializable]
 public class CustomDropDown : TMP_Dropdown
 {
-    // private Animator _startButtonAnimator;
-
     public List<Animator> BottomButtonsAnimator = new();
 
     protected override void Awake()

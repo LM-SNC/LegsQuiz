@@ -12,7 +12,6 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [Inject] private LegsQuizApi _legsQuizApi;
     [Inject] private ButtonsHandler _buttonsHandler;
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
     [Inject] private CanvasDataManager _canvasDataManager;
