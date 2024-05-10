@@ -9,6 +9,7 @@ using YG;
 public class CanvasDataManager : MonoBehaviour
 {
     [Inject] private ButtonsHandler _buttonsHandler;
+    [Inject] private TranslationsManager _translationsManager;
 
     [SerializeField] private CustomDropDown _customDropDown;
     [SerializeField] private GameObject _table;
@@ -22,7 +23,7 @@ public class CanvasDataManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private async void Start()
+    private void Start()
     {
         var gamesJson = Resources.Load<TextAsset>(@"Data/games");
         Debug.Log(gamesJson.text);
@@ -53,15 +54,28 @@ public class CanvasDataManager : MonoBehaviour
         };
 
         PlayerMaxScore = YandexGame.savesData.MaxScore;
-        _score.SetText($"Рекорд: {PlayerMaxScore}");
+
+
+        _translationsManager.Register("rec", "ru", "Рекорд: ");
+        _translationsManager.Register("rec", "en", "Record: ");
+        _translationsManager.Register("rec", "tr", "Rekor: ");
+
+        _score.SetText($"{_translationsManager.GetPhrase("rec")}{PlayerMaxScore}");
+
+        Debug.Log("Max Score: " + PlayerMaxScore);
+    }
+
+    public void UpdateScoreText()
+    {
+        _score.SetText($"{_translationsManager.GetPhrase("rec")}{PlayerMaxScore}");
     }
 
     public async Awaitable UpdatePlayerMaxScore(int score)
     {
         PlayerMaxScore = score;
-        _score.SetText($"Рекорд: {PlayerMaxScore}");
-
         YandexGame.savesData.MaxScore = score;
         YandexGame.SaveProgress();
+
+        UpdateScoreText();
     }
 }

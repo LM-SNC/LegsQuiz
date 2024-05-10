@@ -43,10 +43,10 @@ public class CanvasSwitcher : MonoBehaviour
 
             ActiveCanvas = canvasBinder.Canvas;
             ActiveCanvas.gameObject.SetActive(true);
-
             break;
         }
     }
+    
 }
 
 [Serializable]

@@ -51,7 +51,16 @@ public class GameImageController : MonoBehaviour
     public void SetImage(string image)
     {
         _gameImage.texture = null;
-        Addressables.LoadAssetAsync<Texture2D>(image).Completed += OnCurrentImageLoaded;
+        DownloadImage(true, image);
+    }
+
+    public void DownloadImage(bool withCallback, string image)
+    {
+        var operation = Addressables.LoadAssetAsync<Texture2D>(image);
+        if (withCallback)
+        {
+            operation.Completed += OnCurrentImageLoaded;
+        }
     }
 
     private void OnCurrentImageLoaded(AsyncOperationHandle<Texture2D> handle)
@@ -68,7 +77,6 @@ public class GameImageController : MonoBehaviour
             Debug.LogError("Failed to load the image");
         }
     }
-    
 
 
     public void LegsFocus()

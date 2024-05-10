@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Inject] private ButtonsHandler _buttonsHandler;
     [Inject] private BackgroundsSwitcher _backgroundsSwitcher;
     [Inject] private CanvasDataManager _canvasDataManager;
+    [Inject] private TranslationsManager _translationsManager;
 
 
     private TimerBar _timerBar;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     private List<Question> _gameQuestions;
 
 
-    private Dictionary<string, string> _gameImages;
+    //private Dictionary<string, string> _gameImages;
 
     [SerializeField] private GameObject _buttonsContainer;
     private List<TMP_Text> _answerButtonTextFields;
@@ -75,15 +76,18 @@ public class GameManager : MonoBehaviour
 
         _gameImageController.OnImageLoaded += () =>
         {
+            _timerBar.StartTimer();
+
             foreach (var answerButton in _answerButtons)
             {
                 answerButton.enabled = true;
             }
         };
 
+
         _allQuestions = new();
         _gameQuestions = new();
-        _gameImages = new(150);
+        //_gameImages = new(150);
         _answerButtonTextFields = new();
         _answerButtons = new();
 
@@ -115,13 +119,16 @@ public class GameManager : MonoBehaviour
         foreach (var question in questions.Value)
         {
             _allQuestions[question.GameId].Add(question);
-            await ProcessGameImage(question.Image);
         }
 
         _buttonsHandler.AddHandler("StartButton",
             async (button, canvas) => { StartGame(_backgroundsSwitcher.SelectedGame); });
 
-        _buttonsHandler.AddHandler("BackButton", async (button, canvas) => { StopGame(); });
+        _buttonsHandler.AddHandler("BackButton", async (button, canvas) =>
+        {
+            _canvasDataManager.UpdateScoreText();
+            StopGame();
+        });
 
         _buttonsHandler.AddHandler("RestartButton", async (button, canvas) => { StartGame(_lastGameId); });
 
@@ -144,6 +151,11 @@ public class GameManager : MonoBehaviour
 
         _defeatMenuScore = _defeatMenu.transform.Find("Score").GetComponent<TMP_Text>();
         _winMenuScore = _winMenu.transform.Find("Score").GetComponent<TMP_Text>();
+
+
+        _translationsManager.Register("legs", "ru", "Отгадано ножек: ");
+        _translationsManager.Register("legs", "en", "LEGS GUESSED: ");
+        _translationsManager.Register("legs", "tr", "TAHMİN EDİLEN BACAK SAYISI: ");
     }
 
     private async void ProcessAnswer(Button button, string answer)
@@ -235,19 +247,22 @@ public class GameManager : MonoBehaviour
         if (++_currentQuestion >= _gameQuestions.Count)
         {
             StopGame();
-            _winMenuScore.SetText($"Отгадано ножек: {_score}");
+            _winMenuScore.SetText($"{_translationsManager.GetPhrase("legs")}: {_score}");
             _winMenu.SetActive(true);
             return;
         }
 
         _timerBar.ResetTimer();
-        _timerBar.StartTimer();
 
 
         _gameImageController.LegsFocus();
 
         var newQuestion = _gameQuestions[_currentQuestion];
-        _gameImageController.SetImage(_gameImages[newQuestion.Image]);
+        _gameImageController.SetImage(newQuestion.Image);
+        if (_gameQuestions.Count > _currentQuestion + 1)
+        {
+            _gameImageController.DownloadImage(false, _gameQuestions[_currentQuestion + 1].Image);
+        }
 
         _trueAnswerButton = Random.Range(0, 3);
 
@@ -295,7 +310,7 @@ public class GameManager : MonoBehaviour
         if (_hp <= 0)
         {
             StopGame();
-            _defeatMenuScore.SetText($"Отгадано ножек: {_score}");
+            _defeatMenuScore.SetText($"{_translationsManager.GetPhrase("legs")}{_score}");
             _defeatMenu.SetActive(true);
             return;
         }
@@ -321,11 +336,5 @@ public class GameManager : MonoBehaviour
         {
             // ignored
         }
-    }
-
-    private async Awaitable ProcessGameImage(string imageUrl)
-    {
-        Debug.Log("Process: " + imageUrl);
-        _gameImages[imageUrl] = imageUrl;
     }
 }
