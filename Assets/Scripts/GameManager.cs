@@ -74,6 +74,13 @@ public class GameManager : MonoBehaviour
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
 
+        _gameImageController.OnImageLoaded += () =>
+        {
+            foreach (var answerButton in _answerButtons)
+            {
+                answerButton.enabled = true;
+            }
+        };
 
         _allQuestions = new();
         _gameQuestions = new();
@@ -219,6 +226,11 @@ public class GameManager : MonoBehaviour
 
     private void ChangeQuestion()
     {
+        foreach (var answerButton in _answerButtons)
+        {
+            answerButton.enabled = false;
+        }
+
         Debug.Log($"Question {_currentQuestion}");
 
         if (++_currentQuestion >= _gameQuestions.Count)

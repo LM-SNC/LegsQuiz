@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class GameImageController : MonoBehaviour
@@ -14,6 +16,8 @@ public class GameImageController : MonoBehaviour
     [SerializeField] private Vector3 _bezie;
     [SerializeField] private float _animationRate;
     public bool IsMoving { get; private set; }
+
+    public event UnityAction OnImageLoaded;
 
     // Start is called before the first frame update
 
@@ -61,7 +65,7 @@ public class GameImageController : MonoBehaviour
         var time = 0.0f;
         while (time <= 1.0f && !cancellationToken.IsCancellationRequested)
         {
-            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time); 
+            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time);
             _gameImage.transform.localPosition = Vector3.Lerp(localPosition, endPosition, time);
             _gameImage.transform.localScale = Vector3.Lerp(localScale, new Vector3(1, 1, 1), time);
             yield return new WaitForSeconds(_animationRate);
@@ -72,9 +76,26 @@ public class GameImageController : MonoBehaviour
 
     public void SetImage(string image)
     {
-        var texture = Resources.Load<Texture2D>(image);
-        _gameImage.texture = texture;
+        _gameImage.texture = null;
+        Addressables.LoadAssetAsync<Texture2D>(image).Completed += OnCurrentImageLoaded;
     }
+
+    private void OnCurrentImageLoaded(AsyncOperationHandle<Texture2D> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            var texture = handle.Result;
+            _gameImage.texture = texture;
+
+            OnImageLoaded?.Invoke();
+        }
+        else
+        {
+            Debug.LogError("Failed to load the image");
+        }
+    }
+    
+
 
     public void LegsFocus()
     {

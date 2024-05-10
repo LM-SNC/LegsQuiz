@@ -1,0 +1,665 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a74ae0187f3f30e4586bf2c8f8afaf50
+  m_SerializeEntries:
+  - m_GUID: c904de3fd9bd49243a4068be38192f48
+    m_Address: Images/characters/gensh/Ganyu2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4e5ad33bdc078942aef0e4f8f511a8a
+    m_Address: Images/characters/gensh/Diona1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 487b302571e88e2419a5a382fa2a41b0
+    m_Address: Images/characters/gensh/Collei1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfb42ec8628c91e4998839d4a93b412f
+    m_Address: Images/characters/gensh/Barbara2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e942e3083428b04898a1799c9cd9bae
+    m_Address: Images/characters/gensh/Faruzan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5f165fcf4381374a869ee5e192ed83b
+    m_Address: Images/characters/gensh/Yoimiya1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a768ccd26a88c64885d03137158e9cb
+    m_Address: Images/characters/gensh/Rosaria1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28e7633028176ed4db09e777f8733ee4
+    m_Address: Images/characters/gensh/Kirara
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19192f4777e2c1c45a681c9efa3a16d5
+    m_Address: Images/characters/gensh/Ganyu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7327d19364ba3064bb40189f8132fe89
+    m_Address: Images/characters/gensh/Lynette
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65097c0d9cea3b54088957bb404840cf
+    m_Address: Images/characters/gensh/Yaoyao1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14b210d07e0262d4d87b984351d5e161
+    m_Address: Images/characters/gensh/Eula
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9d1db3bebb454847afe11d069e638b8
+    m_Address: Images/characters/gensh/Ganyu1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b63f30f3871431e41b188b0939037c58
+    m_Address: Images/characters/gensh/Candace1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3619c1849ddd7d499095c85b92fb23c
+    m_Address: Images/characters/gensh/Yanfei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 184fa3da4899dd84fa1d76c4611db968
+    m_Address: Images/characters/gensh/SangonomiyaKokomi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8da4815a15b87d54ea2c6b2e709e06d6
+    m_Address: Images/characters/gensh/Klee
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cecf6c1429e4d2498ca4df8bf1fc5a6
+    m_Address: Images/characters/gensh/KukiShinobu1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed465c0bba13d094e90c7b35c22e4780
+    m_Address: Images/characters/gensh/Xiangling1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 519dcd357af106343a2c07d3062e9329
+    m_Address: Images/characters/gensh/Qiqi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 776822f4a9f9ee746b716807286473ae
+    m_Address: Images/characters/gensh/Nilou
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb0182fc7dd9ba940b21382ad34139b1
+    m_Address: Images/characters/gensh/YunJin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab5c57fb1213441429655621883ee408
+    m_Address: Images/characters/gensh/HuTao1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51e0470ad39dae3408586e105cf720c0
+    m_Address: Images/characters/gensh/Eula1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da456cf9331666b4b8037405702d9dcf
+    m_Address: Images/characters/gensh/Yanfei1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 755d5e50c802e5f46afff5a084339e26
+    m_Address: Images/characters/gensh/Candace
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2163b752ad216764984eff7d3f86bd2b
+    m_Address: Images/characters/gensh/RaidenShogun2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbfaa3c83c2b93d4fa53054761505b2d
+    m_Address: Images/characters/gensh/Eula2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2d6ef23db6ad92438b5d2b242432927
+    m_Address: Images/characters/gensh/Ayaka
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d27a5a03d77c0e341ae01b3784da169b
+    m_Address: Images/characters/gensh/Ayaka1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 660ffe99839b3d043968ced33971bf0a
+    m_Address: Images/characters/gensh/Nilou1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9360225340aaddb4fbf3ebaff7797827
+    m_Address: Images/characters/gensh/Xinyan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3700e4cecc8206b4c86c2f774b6df2a2
+    m_Address: Images/characters/gensh/Keqing2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 636f0deee5af81d448f69f2e2955c800
+    m_Address: Images/characters/gensh/Kirara1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0270c30e65718644a7152b96374bd3b
+    m_Address: Images/characters/gensh/RaidenShogun1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05db107a6fed19f43a371c4f7d1170ce
+    m_Address: Images/characters/gensh/Shenhe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ed2ec13587601941a5c3d769c37bfc4
+    m_Address: Images/characters/gensh/Jean
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de48aeef1e0eef6409c6cd345f196c1d
+    m_Address: Images/characters/gensh/YaeMiko2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9edbff11846dfea46bbcb0daaa05164a
+    m_Address: Images/characters/gensh/Yelan1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f22e0e6d82495bc44a6bb28f34ef3873
+    m_Address: Images/characters/gensh/Sucrose1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 198942770a4fed84d82f8bb3e4c085c1
+    m_Address: Images/characters/gensh/KujouSara
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0420b1c9bb9d754490dad955b07c047
+    m_Address: Images/characters/gensh/Dori
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e77ed579fc504804dbec3637a8968e26
+    m_Address: Images/characters/gensh/Nahida
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bdc2d09394377d4fbb01a67b50c5a1f
+    m_Address: Images/characters/gensh/HuTao
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d53790993c0a61459f16869baaa0497
+    m_Address: Images/characters/gensh/Keqing
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4ceb1a6267c9ab40a3fd8116dd99966
+    m_Address: Images/characters/gensh/Lisa1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63e044a9edb950c4a8783cf7ac7cf2d6
+    m_Address: Images/characters/gensh/Jean1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ad93c78c520c23428219565fad05b6b
+    m_Address: Images/characters/gensh/YaeMiko1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f60ba8690b11e7b45884e55ae4594b35
+    m_Address: Images/characters/gensh/Fischl1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79537ee56e9f9154c81f52a9a635ee2f
+    m_Address: Images/characters/gensh/Nahida1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1e9f33c794df6441845d75b7299cfb1
+    m_Address: Images/characters/gensh/Amber1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf2021c8535b649429881d61396e8eac
+    m_Address: Images/characters/gensh/Faruzan1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 764f4a8098b31a44ab6199053fac19da
+    m_Address: Images/characters/gensh/Yelan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d907bc505a578c548867ff8b07947904
+    m_Address: Images/characters/gensh/Sayu1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 979449ce54fd00f43b377adb20819114
+    m_Address: Images/characters/gensh/Jean2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 908707b084ce17d4b9d5287609a47a29
+    m_Address: Images/characters/gensh/RaidenShogun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 044e7d88f4123b24b83256b21af945b0
+    m_Address: Images/characters/gensh/Shenhe1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a6b48122faa59a499efef8f6d25ff1f
+    m_Address: Images/characters/gensh/Dehya
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13c914392004c0740a79239e0d706702
+    m_Address: Images/characters/gensh/Layla
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a21b7dd17876ae4694ba4b313610ca0
+    m_Address: Images/characters/gensh/Mona2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d97529a95cf472643bba71e1f5768cd9
+    m_Address: Images/characters/gensh/KujouSara1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ece850b2b4bc92742b8f0f63a4a72506
+    m_Address: Images/characters/gensh/Shenhe2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3850b81fd3818984e9e05fda11830f54
+    m_Address: Images/characters/gensh/Xinyan1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f25fd8f5ac41cb347b69a11a230a179e
+    m_Address: Images/characters/gensh/Layla1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec9b990f0b1f468478095b10ef9bd855
+    m_Address: Images/characters/gensh/Sucrose
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 383b1380e9418364795cadebc46f7959
+    m_Address: Images/characters/gensh/Kirara2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d9d60ed12d328c48be6ee4b1237fcd4
+    m_Address: Images/characters/gensh/Beidou
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e15d71184600ec478d2ae16e581a676
+    m_Address: Images/characters/gensh/Amber
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b0bf261e77cc9d4e97149cea6da2029
+    m_Address: Images/characters/gensh/Beidou1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12eaf317adde0754bba19101a34b8feb
+    m_Address: Images/characters/gensh/Ningguang1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0fd8d457a4ebb14e8f0c6cc1e621695
+    m_Address: Images/characters/gensh/Yaoyao
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b182abebca641d443b24f9856bb231b4
+    m_Address: Images/characters/gensh/Klee1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8c87db9424f3fb4fbb03552d634f9f2
+    m_Address: Images/characters/gensh/SangonomiyaKokomi1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1deec7b958646044cbfb461fa635e383
+    m_Address: Images/characters/gensh/Ningguang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dad3a7c10b6af54d9db4567e5e9fd71
+    m_Address: Images/characters/gensh/Lynette1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 349d5f6f07b5e8f4d8d4d893189e512c
+    m_Address: Images/characters/gensh/YaeMiko
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae11f621103986b4cae2fefb8b3b98dc
+    m_Address: Images/characters/gensh/Lisa
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1581579f2d42c324f9a5379881a4c97e
+    m_Address: Images/characters/gensh/Diona
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4525e4d788a9eda499f5b3ae6f7b4cbc
+    m_Address: Images/characters/gensh/lumine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bfe7110df4145c409316a1d7b038363
+    m_Address: Images/characters/gensh/Yoimiya
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ab76d73ccdf02543ac6a9db91c3e587
+    m_Address: Images/characters/gensh/lumine1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02c9aee2942533a4d8af36729120c58a
+    m_Address: Images/characters/gensh/Amber2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98f2ed97e5833a844a4250fed66b72ef
+    m_Address: Images/characters/gensh/Sayu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dac8fbe8125f363428b1c3f8e78c21b4
+    m_Address: Images/characters/gensh/Barbara
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1936a11bcbf56e34ea86d4aa39011d9d
+    m_Address: Images/characters/gensh/Barbara1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 771ba0a236acbde448b0371e891d11d3
+    m_Address: Images/characters/gensh/Dehya1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f042187dbc7583449a6d65008c6f823a
+    m_Address: Images/characters/gensh/HuTao2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d7a281ebdaaaac49a2f403accb192e8
+    m_Address: Images/characters/gensh/Fischl
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ec5bb35ecb3cf644b8c532213d3f4a7
+    m_Address: Images/characters/gensh/Rosaria
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6245f87474f64ea4c8c3f1e2519ec2fd
+    m_Address: Images/characters/gensh/Yanfei2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f5f326dfbf5a0244ae1988cd30dd544
+    m_Address: Images/characters/gensh/Mona
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b459e1fc6c058c243abf05b2fb41a78d
+    m_Address: Images/characters/gensh/Keqing1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 397fe1bbea8ce494484e0d749cbe0a8a
+    m_Address: Images/characters/gensh/Xiangling
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 022094ad0bc98b541a0da92879130673
+    m_Address: Images/characters/gensh/KukiShinobu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a0a9ec3c87999645b7f0fb75e6fbb52
+    m_Address: Images/characters/gensh/Mona1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 567f09779f6e69946bead3f98efe5fd9
+    m_Address: Images/characters/gensh/Xiangling2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e70d383ef8af8ef47a20802369a02a6c
+    m_Address: Images/characters/gensh/Collei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5e7581f3dffd6f4196c45651a1cd495
+    m_Address: Images/characters/honkai/Eden
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2bd6f1bc829c994cb659e173af81e7c
+    m_Address: Images/characters/honkai/KianaKaslana
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42d4e39d3d17ca04c9db7c3e0fb9923c
+    m_Address: Images/characters/honkai/LiSushang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cafaf02f324f21e4993c9537977924a4
+    m_Address: Images/characters/honkai/BronyaZaychik1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7fbefe3908f21e43b268afd7c0db573
+    m_Address: Images/characters/honkai/Pardofelis
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4a8d620f317b3a48bf0e57be571a3ec
+    m_Address: Images/characters/honkai/RozaliyaOlenyeva
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fd682fb3365ec642a8d09e1368c0bbb
+    m_Address: Images/characters/honkai/KianaKaslana1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6918c717ce4bd2d48bcef5ae2890923b
+    m_Address: Images/characters/honkai/RaidenMei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 211dd16c6a76b274bb6a8381d934c6f3
+    m_Address: Images/characters/honkai/Vill-V
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d8ca250ef450f7478ed2de066811eea
+    m_Address: Images/characters/honkai/TheresaApocalypse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6030735baddd304aa88ee335e8a5f53
+    m_Address: Images/characters/honkai/CarolePepper
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f4ab87c999406741922fd1a959b8654
+    m_Address: Images/characters/honkai/RitaRossweisse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e50c6463f3250f4fbb64d97dbcd2190
+    m_Address: Images/characters/honkai/SeeleVollerei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f59108fe97073b41852149ae3840c05
+    m_Address: Images/characters/honkai/Mobius
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4cfc77c166b8a543949766761fa0386
+    m_Address: Images/characters/honkai/Hyperion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3c442ff8c3b3394ea4877eadd12c560
+    m_Address: Images/characters/honkai/Griseo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0c5459f04c897d4fb2e508a2e75778a
+    m_Address: Images/characters/honkai/ShigureKira
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f66fb64ee0e128f47bc9982646a52969
+    m_Address: Images/characters/honkai/Fischl
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e139fd1b12e534140abb01c24bef9702
+    m_Address: Images/characters/honkai/MistelnSchariac
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df05d6f2391d68d4380507d78daefca0
+    m_Address: Images/characters/honkai/NatashaCioara
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c759e6143ed0a044978a04a5ceba08e
+    m_Address: Images/characters/honkai/Aponia
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71cff5d6856fcc444bc9c2956101afc1
+    m_Address: Images/characters/honkai/Sirin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dcdb1ee29d7a5a47884a9f29ce76a4d
+    m_Address: Images/characters/honkai/LiliyaOlenyeva
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb9857a9ad4add34baf439dc8a8281ea
+    m_Address: Images/characters/honkai/PROMETHEUS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c3dc30f2efb09e409a22ece870e7f5c
+    m_Address: Images/characters/honkai/YaeSakura
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c62d6d3be18c03c489799e222d1a34a7
+    m_Address: Images/characters/honkai/FuHua
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8f79c524e6cde14f882d5d9e250e431
+    m_Address: Images/characters/honkai/Elysia
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37041ee1a25b377458759e94bd5af983
+    m_Address: Images/characters/honkai/Durandal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 672db3b286472054ebae54cd1c342585
+    m_Address: Images/characters/honkai/MurataHimeko
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2496cdc080af38740b5973edd7f3d6ef
+    m_Address: Images/characters/honkai/Susannah
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 762889f97b3008a4486e7e3a546262be
+    m_Address: Images/characters/honkai/KallenKaslana
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d94639602fde2b840af95b8ab8a8c3b4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 437ee63d395a21642b8c41d4a5118d69, type: 2}
+    - {fileID: 11400000, guid: ea77d8ab8c65d0741bfac4217e7bb528, type: 2}
