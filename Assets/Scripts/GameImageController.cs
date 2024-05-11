@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
@@ -9,30 +6,25 @@ using UnityEngine.UI;
 
 public class GameImageController : MonoBehaviour
 {
-    [SerializeField] private RawImage _gameImage;
+    
     [SerializeField] private float _imageScale;
     private RectTransform _imageContainerRectTransform;
 
-    [SerializeField] private Vector3 _bezie;
-    [SerializeField] private float _animationRate;
-
     public event UnityAction OnImageLoaded;
-
-    // Start is called before the first frame update
 
     private void Awake()
     {
-        _imageContainerRectTransform = _gameImage.transform.parent.GetComponent<RectTransform>();
+       // _imageContainerRectTransform = _gameImage.transform.parent.GetComponent<RectTransform>();
     }
 
     public void FaceFocus()
     {
-        _gameImage.GetComponent<Animator>().SetTrigger("move");
+      //  _gameImage.GetComponent<Animator>().SetTrigger("move");
     }
 
     public void SetImage(string image)
     {
-        _gameImage.texture = null;
+       // _gameImage.texture = null;
         DownloadImage(true, image);
     }
 
@@ -50,7 +42,7 @@ public class GameImageController : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             var texture = handle.Result;
-            _gameImage.texture = texture;
+          //  _gameImage.texture = texture;
 
             OnImageLoaded?.Invoke();
         }
@@ -63,11 +55,11 @@ public class GameImageController : MonoBehaviour
 
     public void LegsFocus()
     {
-        _gameImage.transform.localScale = new Vector3(_imageScale, _imageScale, _imageScale);
+       // _gameImage.transform.localScale = new Vector3(_imageScale, _imageScale, _imageScale);
 
-        var pos = _gameImage.transform.localPosition;
-        pos.y = (_gameImage.rectTransform.rect.height * _imageScale - _imageContainerRectTransform.rect.height) / 2;
+      //  var pos = _gameImage.transform.localPosition;
+      //  pos.y = (_gameImage.rectTransform.rect.height * _imageScale - _imageContainerRectTransform.rect.height) / 2;
 
-        _gameImage.transform.localPosition = pos;
+       // _gameImage.transform.localPosition = pos;
     }
 }

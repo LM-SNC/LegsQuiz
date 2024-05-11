@@ -46,6 +46,7 @@ public class CanvasDataManager : MonoBehaviour
             var template = _table.transform.Find("Template");
             foreach (var lbPlayerData in data.players)
             {
+                
                 var tableElement = Instantiate(template, _table.transform);
                 tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(lbPlayerData.name);
                 tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(lbPlayerData.score.ToString());
@@ -54,11 +55,7 @@ public class CanvasDataManager : MonoBehaviour
         };
 
         PlayerMaxScore = YandexGame.savesData.MaxScore;
-
-
-        _translationsManager.Register("rec", "ru", "Рекорд: ");
-        _translationsManager.Register("rec", "en", "Record: ");
-        _translationsManager.Register("rec", "tr", "Rekor: ");
+        
 
         _score.SetText($"{_translationsManager.GetPhrase("rec")}{PlayerMaxScore}");
 
@@ -72,6 +69,9 @@ public class CanvasDataManager : MonoBehaviour
 
     public void UpdatePlayerMaxScore(int score)
     {
+        if (score < PlayerMaxScore)
+            return;
+        
         PlayerMaxScore = score;
         YandexGame.savesData.MaxScore = score;
         YandexGame.SaveProgress();

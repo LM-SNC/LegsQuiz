@@ -14,8 +14,7 @@ namespace JsonModels
     {
         public int Id;
         public int GameId;
-
-        public string Text;
+        
         public string Image;
         public string Answer;
     }

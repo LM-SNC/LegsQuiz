@@ -8,7 +8,6 @@ public class BackgroundsSwitcher : MonoBehaviour
 {
     public int SelectedGame { get; private set; }
     [Inject] private ButtonsHandler _buttonsHandler;
-    [Inject] private LoadingProgressBar _loadingProgressBar;
 
     [SerializeField] private CanvasSwitcher _canvasSwitcher;
     
