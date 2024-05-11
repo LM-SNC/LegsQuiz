@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void OnStartButton(int gameId)
     {
+        YandexGame.FullscreenShow();
         ResetGameState(-1);
 
         _currentQuestions = _allQuestions[gameId].ToList();
@@ -120,10 +121,13 @@ public class GameManager : MonoBehaviour
 
     private void OnBackButton()
     {
+        YandexGame.FullscreenShow();
     }
 
     private void OnRestartButton()
     {
+        YandexGame.FullscreenShow();
+
         ResetGameState(-1);
         ShowQuestion();
     }
@@ -174,8 +178,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnTimerShow()
+    {
+    }
+
+    public void OnTimerHide()
+    {
+    }
+
     private void ShowQuestion()
     {
+        YandexGame.FullscreenShow();
+
         SetAnswerButtonsStatus(true);
 
         foreach (var answerButton in _answerButtons)
