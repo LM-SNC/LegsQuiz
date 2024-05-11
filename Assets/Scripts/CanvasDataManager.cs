@@ -70,7 +70,7 @@ public class CanvasDataManager : MonoBehaviour
         _score.SetText($"{_translationsManager.GetPhrase("rec")}{PlayerMaxScore}");
     }
 
-    public async Awaitable UpdatePlayerMaxScore(int score)
+    public void UpdatePlayerMaxScore(int score)
     {
         PlayerMaxScore = score;
         YandexGame.savesData.MaxScore = score;

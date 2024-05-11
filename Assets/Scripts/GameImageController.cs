@@ -15,7 +15,6 @@ public class GameImageController : MonoBehaviour
 
     [SerializeField] private Vector3 _bezie;
     [SerializeField] private float _animationRate;
-    public bool IsMoving { get; private set; }
 
     public event UnityAction OnImageLoaded;
 
@@ -26,26 +25,9 @@ public class GameImageController : MonoBehaviour
         _imageContainerRectTransform = _gameImage.transform.parent.GetComponent<RectTransform>();
     }
 
-    public IEnumerator FaceFocus(CancellationToken cancellationToken = default(CancellationToken))
+    public void FaceFocus()
     {
-        IsMoving = true;
-        var localPosition = _gameImage.transform.localPosition;
-        var localScale = _gameImage.transform.localScale;
-
-        var endPosition = localPosition;
-
-        endPosition.y = -((_gameImage.rectTransform.rect.height - _imageContainerRectTransform.rect.height) / 2);
-
-        var time = 0.0f;
-        while (time <= 1.0f && !cancellationToken.IsCancellationRequested)
-        {
-            time += Bezie(_bezie.x, _bezie.y, _bezie.z, time);
-            _gameImage.transform.localPosition = Vector3.Lerp(localPosition, endPosition, time);
-            _gameImage.transform.localScale = Vector3.Lerp(localScale, new Vector3(1, 1, 1), time);
-            yield return new WaitForSeconds(_animationRate);
-        }
-
-        IsMoving = false;
+        _gameImage.GetComponent<Animator>().SetTrigger("move");
     }
 
     public void SetImage(string image)
@@ -87,10 +69,5 @@ public class GameImageController : MonoBehaviour
         pos.y = (_gameImage.rectTransform.rect.height * _imageScale - _imageContainerRectTransform.rect.height) / 2;
 
         _gameImage.transform.localPosition = pos;
-    }
-
-    private float Bezie(float p1, float p2, float p3, float t)
-    {
-        return (float)(Math.Pow(1.0f - t, 2) * p1 + 2 * t * (1 - t) * p2 + Math.Pow(t, 2) * p3);
     }
 }

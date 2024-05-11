@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using JsonModels;
 using Reflex.Attributes;
 using TMPro;
@@ -24,9 +23,6 @@ public class GameManager : MonoBehaviour
     private Dictionary<int, List<Question>> _allQuestions;
     private List<Question> _gameQuestions;
 
-
-    //private Dictionary<string, string> _gameImages;
-
     [SerializeField] private GameObject _buttonsContainer;
     private List<TMP_Text> _answerButtonTextFields;
     private List<Button> _answerButtons;
@@ -43,9 +39,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Color _trueAnswerColor;
     [SerializeField] private Color _wrongAnswerColor;
-
-
-    private CancellationTokenSource _questionCancellationTokenSource;
 
     private int _hp = 1;
     [SerializeField] private RawImage _heart;
@@ -69,7 +62,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
 
-    private async void Start()
+    private void Start()
     {
         _timerBar = gameObject.GetComponent<TimerBar>();
         _gameImageController = gameObject.GetComponent<GameImageController>();
@@ -87,7 +80,6 @@ public class GameManager : MonoBehaviour
 
         _allQuestions = new();
         _gameQuestions = new();
-        //_gameImages = new(150);
         _answerButtonTextFields = new();
         _answerButtons = new();
 
@@ -136,16 +128,15 @@ public class GameManager : MonoBehaviour
 
         _timerBar.OnTimerEnd += async () =>
         {
-            if (_hp <= 0)
-                return;
-
             _hp--;
             UpdateHealPoints();
+            CheckHp();
 
+            if (_hp < 0)
+                return;
+            
             _effectTime = true;
-
-            await EndQuestion();
-            ChangeQuestion();
+            _gameImageController.FaceFocus();
         };
 
 
@@ -158,12 +149,13 @@ public class GameManager : MonoBehaviour
         _translationsManager.Register("legs", "tr", "TAHMİN EDİLEN BACAK SAYISI: ");
     }
 
-    private async void ProcessAnswer(Button button, string answer)
+    private void ProcessAnswer(Button button, string answer)
     {
         if (_effectTime)
             return;
 
         _effectTime = true;
+        _gameImageController.FaceFocus();
 
         if (answer == _gameQuestions[_currentQuestion].Answer)
         {
@@ -183,12 +175,8 @@ public class GameManager : MonoBehaviour
 
             _hp--;
             UpdateHealPoints();
+            CheckHp();
         }
-
-        await EndQuestion();
-
-        if (_hp > 0 && !_questionCancellationTokenSource.Token.IsCancellationRequested)
-            ChangeQuestion();
     }
 
 
@@ -201,9 +189,6 @@ public class GameManager : MonoBehaviour
 
         _hp = 3;
         UpdateHealPoints();
-
-        _questionCancellationTokenSource?.Dispose();
-        _questionCancellationTokenSource = new CancellationTokenSource();
 
         if (!saveData)
         {
@@ -228,10 +213,8 @@ public class GameManager : MonoBehaviour
     private void StopGame()
     {
         _timerBar.StopTimer();
-
         _effectTime = false;
 
-        _questionCancellationTokenSource?.Cancel();
         Debug.Log("Game Stop!");
     }
 
@@ -253,12 +236,11 @@ public class GameManager : MonoBehaviour
         }
 
         _timerBar.ResetTimer();
-
-
         _gameImageController.LegsFocus();
 
         var newQuestion = _gameQuestions[_currentQuestion];
         _gameImageController.SetImage(newQuestion.Image);
+
         if (_gameQuestions.Count > _currentQuestion + 1)
         {
             _gameImageController.DownloadImage(false, _gameQuestions[_currentQuestion + 1].Image);
@@ -292,6 +274,16 @@ public class GameManager : MonoBehaviour
         _effectTime = false;
     }
 
+    private void CheckHp()
+    {
+        if (_hp <= 0)
+        {
+            StopGame();
+            _defeatMenuScore.SetText($"{_translationsManager.GetPhrase("legs")}{_score}");
+            _defeatMenu.SetActive(true);
+        }
+    }
+
     private void UpdateButtonColor(Button button, Color color)
     {
         button.colors = new ColorBlock()
@@ -308,33 +300,14 @@ public class GameManager : MonoBehaviour
     private void UpdateHealPoints()
     {
         if (_hp <= 0)
-        {
-            StopGame();
-            _defeatMenuScore.SetText($"{_translationsManager.GetPhrase("legs")}{_score}");
-            _defeatMenu.SetActive(true);
             return;
-        }
 
         _heart.texture = _heartState[Math.Abs(_hp - 1)].texture;
     }
 
-    private async Awaitable EndQuestion()
+    public void OnAnimationEnd()
     {
-        _timerBar.StopTimer();
-        StartCoroutine(_gameImageController.FaceFocus(_questionCancellationTokenSource.Token));
-
-        while (_gameImageController.IsMoving)
-        {
-            await Awaitable.WaitForSecondsAsync(0.5f);
-        }
-
-        try
-        {
-            await Awaitable.WaitForSecondsAsync(1, _questionCancellationTokenSource.Token);
-        }
-        catch (Exception e)
-        {
-            // ignored
-        }
+        ChangeQuestion();
+        _effectTime = false;
     }
 }
