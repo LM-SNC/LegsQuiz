@@ -1,1 +1,879 @@
-{"Value":[{"Id":4,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Amber","Answer":"Amber"},{"Id":5,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Amber1","Answer":"Amber"},{"Id":6,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Amber2","Answer":"Amber"},{"Id":7,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ayaka","Answer":"Ayaka"},{"Id":8,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ayaka1","Answer":"Ayaka"},{"Id":9,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Barbara","Answer":"Barbara"},{"Id":10,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Barbara1","Answer":"Barbara"},{"Id":11,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Barbara2","Answer":"Barbara"},{"Id":12,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Beidou","Answer":"Beidou"},{"Id":13,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Beidou1","Answer":"Beidou"},{"Id":14,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Candace","Answer":"Candace"},{"Id":15,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Candace1","Answer":"Candace"},{"Id":16,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Collei","Answer":"Collei"},{"Id":17,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Collei1","Answer":"Collei"},{"Id":18,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Dehya","Answer":"Dehya"},{"Id":19,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Dehya1","Answer":"Dehya"},{"Id":20,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Diona","Answer":"Diona"},{"Id":21,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Diona1","Answer":"Diona"},{"Id":22,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Dori","Answer":"Dori"},{"Id":23,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Eula","Answer":"Eula"},{"Id":24,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Eula1","Answer":"Eula"},{"Id":25,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Eula2","Answer":"Eula"},{"Id":26,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Faruzan","Answer":"Faruzan"},{"Id":27,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Faruzan1","Answer":"Faruzan"},{"Id":28,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Fischl","Answer":"Fischl"},{"Id":29,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Fischl1","Answer":"Fischl"},{"Id":30,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ganyu","Answer":"Ganyu"},{"Id":31,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ganyu1","Answer":"Ganyu"},{"Id":32,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ganyu2","Answer":"Ganyu"},{"Id":33,"GameId":0,"Text":"none","Image":"Images/characters/gensh/HuTao","Answer":"HuTao"},{"Id":34,"GameId":0,"Text":"none","Image":"Images/characters/gensh/HuTao1","Answer":"HuTao"},{"Id":35,"GameId":0,"Text":"none","Image":"Images/characters/gensh/HuTao2","Answer":"HuTao"},{"Id":36,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Jean","Answer":"Jean"},{"Id":37,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Jean1","Answer":"Jean"},{"Id":38,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Jean2","Answer":"Jean"},{"Id":39,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Keqing","Answer":"Keqing"},{"Id":40,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Keqing1","Answer":"Keqing"},{"Id":41,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Keqing2","Answer":"Keqing"},{"Id":42,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Kirara","Answer":"Kirara"},{"Id":43,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Kirara1","Answer":"Kirara"},{"Id":44,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Kirara2","Answer":"Kirara"},{"Id":45,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Klee","Answer":"Klee"},{"Id":46,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Klee1","Answer":"Klee"},{"Id":47,"GameId":0,"Text":"none","Image":"Images/characters/gensh/KujouSara","Answer":"Kujou Sara"},{"Id":48,"GameId":0,"Text":"none","Image":"Images/characters/gensh/KujouSara1","Answer":"Kujou Sara"},{"Id":49,"GameId":0,"Text":"none","Image":"Images/characters/gensh/KukiShinobu","Answer":"Kuki Shinobu"},{"Id":50,"GameId":0,"Text":"none","Image":"Images/characters/gensh/KukiShinobu1","Answer":"Kuki Shinobu"},{"Id":51,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Layla","Answer":"Layla"},{"Id":52,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Layla1","Answer":"Layla"},{"Id":53,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Lisa","Answer":"Lisa"},{"Id":54,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Lisa1","Answer":"Lisa"},{"Id":55,"GameId":0,"Text":"none","Image":"Images/characters/gensh/lumine","Answer":"lumine"},{"Id":56,"GameId":0,"Text":"none","Image":"Images/characters/gensh/lumine1","Answer":"lumine"},{"Id":57,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Lynette","Answer":"Lynette"},{"Id":58,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Lynette1","Answer":"Lynette"},{"Id":59,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Mona","Answer":"Mona"},{"Id":60,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Mona1","Answer":"Mona"},{"Id":61,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Mona2","Answer":"Mona"},{"Id":62,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Nahida","Answer":"Nahida"},{"Id":63,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Nahida1","Answer":"Nahida"},{"Id":64,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Nilou","Answer":"Nilou"},{"Id":65,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Nilou1","Answer":"Nilou"},{"Id":66,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ningguang","Answer":"Ningguang"},{"Id":67,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Ningguang1","Answer":"Ningguang"},{"Id":68,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Qiqi","Answer":"Qiqi"},{"Id":69,"GameId":0,"Text":"none","Image":"Images/characters/gensh/RaidenShogun","Answer":"Raiden Shogun"},{"Id":70,"GameId":0,"Text":"none","Image":"Images/characters/gensh/RaidenShogun1","Answer":"Raiden Shogun"},{"Id":71,"GameId":0,"Text":"none","Image":"Images/characters/gensh/RaidenShogun2","Answer":"Raiden Shogun"},{"Id":72,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Rosaria","Answer":"Rosaria"},{"Id":73,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Rosaria1","Answer":"Rosaria"},{"Id":74,"GameId":0,"Text":"none","Image":"Images/characters/gensh/SangonomiyaKokomi","Answer":"Sangonomiya Kokomi"},{"Id":75,"GameId":0,"Text":"none","Image":"Images/characters/gensh/SangonomiyaKokomi1","Answer":"Sangonomiya Kokomi"},{"Id":76,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Sayu","Answer":"Sayu"},{"Id":77,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Sayu1","Answer":"Sayu"},{"Id":78,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Shenhe","Answer":"Shenhe"},{"Id":79,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Shenhe1","Answer":"Shenhe"},{"Id":80,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Shenhe2","Answer":"Shenhe"},{"Id":81,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Sucrose","Answer":"Sucrose"},{"Id":82,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Sucrose1","Answer":"Sucrose"},{"Id":83,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Xiangling","Answer":"Xiangling"},{"Id":84,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Xiangling1","Answer":"Xiangling"},{"Id":85,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Xiangling2","Answer":"Xiangling"},{"Id":86,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Xinyan","Answer":"Xinyan"},{"Id":87,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Xinyan1","Answer":"Xinyan"},{"Id":88,"GameId":0,"Text":"none","Image":"Images/characters/gensh/YaeMiko","Answer":"Yae Miko"},{"Id":89,"GameId":0,"Text":"none","Image":"Images/characters/gensh/YaeMiko1","Answer":"Yae Miko"},{"Id":90,"GameId":0,"Text":"none","Image":"Images/characters/gensh/YaeMiko2","Answer":"Yae Miko"},{"Id":91,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yanfei","Answer":"Yanfei"},{"Id":92,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yanfei1","Answer":"Yanfei"},{"Id":93,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yanfei2","Answer":"Yanfei"},{"Id":94,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yaoyao","Answer":"Yaoyao"},{"Id":95,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yaoyao1","Answer":"Yaoyao"},{"Id":96,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yelan","Answer":"Yelan"},{"Id":97,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yelan1","Answer":"Yelan"},{"Id":98,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yoimiya","Answer":"Yoimiya"},{"Id":99,"GameId":0,"Text":"none","Image":"Images/characters/gensh/Yoimiya1","Answer":"Yoimiya"},{"Id":100,"GameId":0,"Text":"none","Image":"Images/characters/gensh/YunJin","Answer":"Yun Jin"},{"Id":101,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Aponia","Answer":"Aponia"},{"Id":102,"GameId":1,"Text":"none","Image":"Images/characters/honkai/BronyaZaychik1","Answer":"Bronya Zaychik"},{"Id":103,"GameId":1,"Text":"none","Image":"Images/characters/honkai/CarolePepper","Answer":"Carole Pepper"},{"Id":104,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Durandal","Answer":"Durandal"},{"Id":105,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Eden","Answer":"Eden"},{"Id":106,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Elysia","Answer":"Elysia"},{"Id":107,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Fischl","Answer":"Fischl"},{"Id":108,"GameId":1,"Text":"none","Image":"Images/characters/honkai/FuHua","Answer":"Fu Hua"},{"Id":109,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Griseo","Answer":"Griseo"},{"Id":110,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Hyperion","Answer":"Hyperion"},{"Id":111,"GameId":1,"Text":"none","Image":"Images/characters/honkai/KallenKaslana","Answer":"Kallen Kaslana"},{"Id":112,"GameId":1,"Text":"none","Image":"Images/characters/honkai/KianaKaslana","Answer":"Kiana Kaslana"},{"Id":113,"GameId":1,"Text":"none","Image":"Images/characters/honkai/KianaKaslana1","Answer":"Kiana Kaslana"},{"Id":114,"GameId":1,"Text":"none","Image":"Images/characters/honkai/LiliyaOlenyeva","Answer":"Liliya Olenyeva"},{"Id":115,"GameId":1,"Text":"none","Image":"Images/characters/honkai/LiSushang","Answer":"Li Sushang"},{"Id":116,"GameId":1,"Text":"none","Image":"Images/characters/honkai/MistelnSchariac","Answer":"Misteln Schariac"},{"Id":117,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Mobius","Answer":"Mobius"},{"Id":118,"GameId":1,"Text":"none","Image":"Images/characters/honkai/MurataHimeko","Answer":"Murata Himeko"},{"Id":119,"GameId":1,"Text":"none","Image":"Images/characters/honkai/NatashaCioara","Answer":"Natasha Cioara"},{"Id":120,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Pardofelis","Answer":"Pardofelis"},{"Id":121,"GameId":1,"Text":"none","Image":"Images/characters/honkai/PROMETHEUS","Answer":"PROMETHEUS"},{"Id":122,"GameId":1,"Text":"none","Image":"Images/characters/honkai/RaidenMei","Answer":"Raiden Mei"},{"Id":123,"GameId":1,"Text":"none","Image":"Images/characters/honkai/RitaRossweisse","Answer":"Rita Rossweisse"},{"Id":124,"GameId":1,"Text":"none","Image":"Images/characters/honkai/RozaliyaOlenyeva","Answer":"Rozaliya Olenyeva"},{"Id":125,"GameId":1,"Text":"none","Image":"Images/characters/honkai/SeeleVollerei","Answer":"Seele Vollerei"},{"Id":126,"GameId":1,"Text":"none","Image":"Images/characters/honkai/ShigureKira","Answer":"Shigure Kira"},{"Id":127,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Sirin","Answer":"Sirin"},{"Id":128,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Susannah","Answer":"Susannah"},{"Id":129,"GameId":1,"Text":"none","Image":"Images/characters/honkai/TheresaApocalypse","Answer":"Theresa Apocalypse"},{"Id":130,"GameId":1,"Text":"none","Image":"Images/characters/honkai/Vill-V","Answer":"Vill-V"},{"Id":131,"GameId":1,"Text":"none","Image":"Images/characters/honkai/YaeSakura","Answer":"Yae Sakura"}]}
+{
+  "Value": [
+    {
+      "Id": 4,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Amber",
+      "Answer": "Amber"
+    },
+    {
+      "Id": 5,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Amber1",
+      "Answer": "Amber"
+    },
+    {
+      "Id": 6,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Amber2",
+      "Answer": "Amber"
+    },
+    {
+      "Id": 7,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ayaka",
+      "Answer": "Ayaka"
+    },
+    {
+      "Id": 8,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ayaka1",
+      "Answer": "Ayaka"
+    },
+    {
+      "Id": 10,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Barbara1",
+      "Answer": "Barbara"
+    },
+    {
+      "Id": 11,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Barbara2",
+      "Answer": "Barbara"
+    },
+    {
+      "Id": 12,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Beidou",
+      "Answer": "Beidou"
+    },
+    {
+      "Id": 13,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Beidou1",
+      "Answer": "Beidou"
+    },
+    {
+      "Id": 14,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Candace",
+      "Answer": "Candace"
+    },
+    {
+      "Id": 15,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Candace1",
+      "Answer": "Candace"
+    },
+    {
+      "Id": 16,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Collei",
+      "Answer": "Collei"
+    },
+    {
+      "Id": 17,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Collei1",
+      "Answer": "Collei"
+    },
+    {
+      "Id": 18,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Dehya",
+      "Answer": "Dehya"
+    },
+    {
+      "Id": 19,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Dehya1",
+      "Answer": "Dehya"
+    },
+    {
+      "Id": 20,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Diona",
+      "Answer": "Diona"
+    },
+    {
+      "Id": 21,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Diona1",
+      "Answer": "Diona"
+    },
+    {
+      "Id": 22,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Dori",
+      "Answer": "Dori"
+    },
+    {
+      "Id": 23,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Eula",
+      "Answer": "Eula"
+    },
+    {
+      "Id": 24,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Eula1",
+      "Answer": "Eula"
+    },
+    {
+      "Id": 25,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Eula2",
+      "Answer": "Eula"
+    },
+    {
+      "Id": 26,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Faruzan",
+      "Answer": "Faruzan"
+    },
+    {
+      "Id": 27,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Faruzan1",
+      "Answer": "Faruzan"
+    },
+    {
+      "Id": 28,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Fischl",
+      "Answer": "Fischl"
+    },
+    {
+      "Id": 29,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Fischl1",
+      "Answer": "Fischl"
+    },
+    {
+      "Id": 30,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ganyu",
+      "Answer": "Ganyu"
+    },
+    {
+      "Id": 31,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ganyu1",
+      "Answer": "Ganyu"
+    },
+    {
+      "Id": 32,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ganyu2",
+      "Answer": "Ganyu"
+    },
+    {
+      "Id": 33,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/HuTao",
+      "Answer": "HuTao"
+    },
+    {
+      "Id": 34,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/HuTao1",
+      "Answer": "HuTao"
+    },
+    {
+      "Id": 35,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/HuTao2",
+      "Answer": "HuTao"
+    },
+    {
+      "Id": 36,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Jean",
+      "Answer": "Jean"
+    },
+    {
+      "Id": 37,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Jean1",
+      "Answer": "Jean"
+    },
+    {
+      "Id": 38,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Jean2",
+      "Answer": "Jean"
+    },
+    {
+      "Id": 39,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Keqing",
+      "Answer": "Keqing"
+    },
+    {
+      "Id": 40,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Keqing1",
+      "Answer": "Keqing"
+    },
+    {
+      "Id": 41,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Keqing2",
+      "Answer": "Keqing"
+    },
+    {
+      "Id": 42,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Kirara",
+      "Answer": "Kirara"
+    },
+    {
+      "Id": 43,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Kirara1",
+      "Answer": "Kirara"
+    },
+    {
+      "Id": 44,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Kirara2",
+      "Answer": "Kirara"
+    },
+    {
+      "Id": 45,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Klee",
+      "Answer": "Klee"
+    },
+    {
+      "Id": 46,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Klee1",
+      "Answer": "Klee"
+    },
+    {
+      "Id": 47,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/KujouSara",
+      "Answer": "Kujou Sara"
+    },
+    {
+      "Id": 48,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/KujouSara1",
+      "Answer": "Kujou Sara"
+    },
+    {
+      "Id": 49,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/KukiShinobu",
+      "Answer": "Kuki Shinobu"
+    },
+    {
+      "Id": 50,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/KukiShinobu1",
+      "Answer": "Kuki Shinobu"
+    },
+    {
+      "Id": 51,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Layla",
+      "Answer": "Layla"
+    },
+    {
+      "Id": 52,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Layla1",
+      "Answer": "Layla"
+    },
+    {
+      "Id": 53,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Lisa",
+      "Answer": "Lisa"
+    },
+    {
+      "Id": 54,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Lisa1",
+      "Answer": "Lisa"
+    },
+    {
+      "Id": 55,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/lumine",
+      "Answer": "lumine"
+    },
+    {
+      "Id": 56,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/lumine1",
+      "Answer": "lumine"
+    },
+    {
+      "Id": 57,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Lynette",
+      "Answer": "Lynette"
+    },
+    {
+      "Id": 58,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Lynette1",
+      "Answer": "Lynette"
+    },
+    {
+      "Id": 60,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Mona1",
+      "Answer": "Mona"
+    },
+    {
+      "Id": 61,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Mona2",
+      "Answer": "Mona"
+    },
+    {
+      "Id": 62,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Nahida",
+      "Answer": "Nahida"
+    },
+    {
+      "Id": 63,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Nahida1",
+      "Answer": "Nahida"
+    },
+    {
+      "Id": 64,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Nilou",
+      "Answer": "Nilou"
+    },
+    {
+      "Id": 65,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Nilou1",
+      "Answer": "Nilou"
+    },
+    {
+      "Id": 66,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ningguang",
+      "Answer": "Ningguang"
+    },
+    {
+      "Id": 67,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Ningguang1",
+      "Answer": "Ningguang"
+    },
+    {
+      "Id": 68,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Qiqi",
+      "Answer": "Qiqi"
+    },
+    {
+      "Id": 69,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/RaidenShogun",
+      "Answer": "Raiden Shogun"
+    },
+    {
+      "Id": 70,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/RaidenShogun1",
+      "Answer": "Raiden Shogun"
+    },
+    {
+      "Id": 71,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/RaidenShogun2",
+      "Answer": "Raiden Shogun"
+    },
+    {
+      "Id": 72,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Rosaria",
+      "Answer": "Rosaria"
+    },
+    {
+      "Id": 73,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Rosaria1",
+      "Answer": "Rosaria"
+    },
+    {
+      "Id": 74,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/SangonomiyaKokomi",
+      "Answer": "Sangonomiya Kokomi"
+    },
+    {
+      "Id": 75,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/SangonomiyaKokomi1",
+      "Answer": "Sangonomiya Kokomi"
+    },
+    {
+      "Id": 76,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Sayu",
+      "Answer": "Sayu"
+    },
+    {
+      "Id": 77,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Sayu1",
+      "Answer": "Sayu"
+    },
+    {
+      "Id": 79,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Shenhe1",
+      "Answer": "Shenhe"
+    },
+    {
+      "Id": 80,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Shenhe2",
+      "Answer": "Shenhe"
+    },
+    {
+      "Id": 81,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Sucrose",
+      "Answer": "Sucrose"
+    },
+    {
+      "Id": 82,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Sucrose1",
+      "Answer": "Sucrose"
+    },
+    {
+      "Id": 83,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Xiangling",
+      "Answer": "Xiangling"
+    },
+    {
+      "Id": 84,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Xiangling1",
+      "Answer": "Xiangling"
+    },
+    {
+      "Id": 85,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Xiangling2",
+      "Answer": "Xiangling"
+    },
+    {
+      "Id": 86,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Xinyan",
+      "Answer": "Xinyan"
+    },
+    {
+      "Id": 87,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Xinyan1",
+      "Answer": "Xinyan"
+    },
+    {
+      "Id": 88,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/YaeMiko",
+      "Answer": "Yae Miko"
+    },
+    {
+      "Id": 89,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/YaeMiko1",
+      "Answer": "Yae Miko"
+    },
+    {
+      "Id": 90,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/YaeMiko2",
+      "Answer": "Yae Miko"
+    },
+    {
+      "Id": 91,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yanfei",
+      "Answer": "Yanfei"
+    },
+    {
+      "Id": 92,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yanfei1",
+      "Answer": "Yanfei"
+    },
+    {
+      "Id": 93,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yanfei2",
+      "Answer": "Yanfei"
+    },
+    {
+      "Id": 94,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yaoyao",
+      "Answer": "Yaoyao"
+    },
+    {
+      "Id": 95,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yaoyao1",
+      "Answer": "Yaoyao"
+    },
+    {
+      "Id": 96,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yelan",
+      "Answer": "Yelan"
+    },
+    {
+      "Id": 97,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yelan1",
+      "Answer": "Yelan"
+    },
+    {
+      "Id": 98,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yoimiya",
+      "Answer": "Yoimiya"
+    },
+    {
+      "Id": 99,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/Yoimiya1",
+      "Answer": "Yoimiya"
+    },
+    {
+      "Id": 100,
+      "GameId": 0,
+      "Text": "none",
+      "Image": "Images/characters/gensh/YunJin",
+      "Answer": "Yun Jin"
+    },
+    {
+      "Id": 101,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Aponia",
+      "Answer": "Aponia"
+    },
+    {
+      "Id": 102,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/BronyaZaychik1",
+      "Answer": "Bronya Zaychik"
+    },
+    {
+      "Id": 103,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/CarolePepper",
+      "Answer": "Carole Pepper"
+    },
+    {
+      "Id": 104,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Durandal",
+      "Answer": "Durandal"
+    },
+    {
+      "Id": 105,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Eden",
+      "Answer": "Eden"
+    },
+    {
+      "Id": 106,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Elysia",
+      "Answer": "Elysia"
+    },
+    {
+      "Id": 107,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Fischl",
+      "Answer": "Fischl"
+    },
+    {
+      "Id": 108,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/FuHua",
+      "Answer": "Fu Hua"
+    },
+    {
+      "Id": 109,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Griseo",
+      "Answer": "Griseo"
+    },
+    {
+      "Id": 110,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Hyperion",
+      "Answer": "Hyperion"
+    },
+    {
+      "Id": 111,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/KallenKaslana",
+      "Answer": "Kallen Kaslana"
+    },
+    {
+      "Id": 112,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/KianaKaslana",
+      "Answer": "Kiana Kaslana"
+    },
+    {
+      "Id": 113,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/KianaKaslana1",
+      "Answer": "Kiana Kaslana"
+    },
+    {
+      "Id": 114,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/LiliyaOlenyeva",
+      "Answer": "Liliya Olenyeva"
+    },
+    {
+      "Id": 115,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/LiSushang",
+      "Answer": "Li Sushang"
+    },
+    {
+      "Id": 116,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/MistelnSchariac",
+      "Answer": "Misteln Schariac"
+    },
+    {
+      "Id": 117,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Mobius",
+      "Answer": "Mobius"
+    },
+    {
+      "Id": 118,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/MurataHimeko",
+      "Answer": "Murata Himeko"
+    },
+    {
+      "Id": 119,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/NatashaCioara",
+      "Answer": "Natasha Cioara"
+    },
+    {
+      "Id": 120,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Pardofelis",
+      "Answer": "Pardofelis"
+    },
+    {
+      "Id": 121,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/PROMETHEUS",
+      "Answer": "PROMETHEUS"
+    },
+    {
+      "Id": 122,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/RaidenMei",
+      "Answer": "Raiden Mei"
+    },
+    {
+      "Id": 123,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/RitaRossweisse",
+      "Answer": "Rita Rossweisse"
+    },
+    {
+      "Id": 124,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/RozaliyaOlenyeva",
+      "Answer": "Rozaliya Olenyeva"
+    },
+    {
+      "Id": 125,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/SeeleVollerei",
+      "Answer": "Seele Vollerei"
+    },
+    {
+      "Id": 126,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/ShigureKira",
+      "Answer": "Shigure Kira"
+    },
+    {
+      "Id": 127,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Sirin",
+      "Answer": "Sirin"
+    },
+    {
+      "Id": 128,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Susannah",
+      "Answer": "Susannah"
+    },
+    {
+      "Id": 129,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/TheresaApocalypse",
+      "Answer": "Theresa Apocalypse"
+    },
+    {
+      "Id": 130,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/Vill-V",
+      "Answer": "Vill-V"
+    },
+    {
+      "Id": 131,
+      "GameId": 1,
+      "Text": "none",
+      "Image": "Images/characters/honkai/YaeSakura",
+      "Answer": "Yae Sakura"
+    }
+  ]
+}

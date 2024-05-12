@@ -91,6 +91,12 @@ public class GameManager : MonoBehaviour
         EndQuestion();
         if (answer == _currentQuestions[_currentQuestion].Answer)
         {
+            _score++;
+            _canvasDataManager.UpdatePlayerMaxScore(_score);
+
+            YandexGame.NewLeaderboardScores("top", ++YandexGame.savesData.AllTimeScore);
+            YandexGame.SaveProgress();
+
             SetButtonColor(button, _trueAnswerColor);
         }
         else
@@ -167,12 +173,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                _score++;
-                _canvasDataManager.UpdatePlayerMaxScore(_score);
-
-                YandexGame.NewLeaderboardScores("top", ++YandexGame.savesData.AllTimeScore);
-                YandexGame.SaveProgress();
-
                 ShowQuestion();
             }
         }

@@ -192,11 +192,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 05db107a6fed19f43a371c4f7d1170ce
-    m_Address: Images/characters/gensh/Shenhe
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ed2ec13587601941a5c3d769c37bfc4
     m_Address: Images/characters/gensh/Jean
     m_ReadOnly: 0
@@ -432,11 +427,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dac8fbe8125f363428b1c3f8e78c21b4
-    m_Address: Images/characters/gensh/Barbara
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1936a11bcbf56e34ea86d4aa39011d9d
     m_Address: Images/characters/gensh/Barbara1
     m_ReadOnly: 0
@@ -464,11 +454,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6245f87474f64ea4c8c3f1e2519ec2fd
     m_Address: Images/characters/gensh/Yanfei2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f5f326dfbf5a0244ae1988cd30dd544
-    m_Address: Images/characters/gensh/Mona
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
