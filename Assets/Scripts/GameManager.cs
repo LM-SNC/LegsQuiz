@@ -140,7 +140,10 @@ public class GameManager : MonoBehaviour
 
     private void OnResumeButton()
     {
+        var score = _score;
         ResetGameState(_currentQuestion - 1);
+
+        _score = score;
         ShowQuestion();
     }
 
@@ -281,7 +284,7 @@ public class GameManager : MonoBehaviour
             }
 
             var characterName = _currentQuestions[Random.Range(0, _currentQuestions.Count)].Answer;
-            if (randomNames.Contains(characterName) && characterName != currentAnswer)
+            if (randomNames.Contains(characterName) || characterName == currentAnswer)
             {
                 i--;
                 continue;
