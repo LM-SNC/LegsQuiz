@@ -27,6 +27,9 @@ public class TranslationsManager
 
     public string GetPhrase(string phraseKey)
     {
-        return _phrases[phraseKey][YandexGame.EnvironmentData.language.ToLower()];
+        if (_phrases[phraseKey.ToLower()].TryGetValue(YandexGame.EnvironmentData.language.ToLower(), out var phrase))
+            return phrase;
+
+        return _phrases[phraseKey.ToLower()]["en"];
     }
 }

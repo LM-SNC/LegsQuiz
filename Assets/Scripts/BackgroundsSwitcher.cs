@@ -13,7 +13,7 @@ public class BackgroundsSwitcher : MonoBehaviour
     
     private Dictionary<int, Texture2D> _backgrounds = new();
 
-    private async void Start()
+    private void Start()
     {
         var backgroundsJson = Resources.Load<TextAsset>(@"Data/backgrounds");
         Debug.Log(backgroundsJson.text);

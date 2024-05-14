@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
         foreach (var question in questions.Value)
         {
             _allQuestions[question.GameId].Add(question);
+            _translationsManager.Register(question.PhraseKey, "en", question.PhraseKey);
+            _translationsManager.Register(question.PhraseKey, "ru", question.AnswerRu);
         }
 
         Debug.Log("Questions count: " + _allQuestions[0]);
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
             answerButton.onClick.AddListener(() =>
             {
                 OnAnswerButton(answerButton,
-                    answerButton.transform.GetChild(0).GetComponent<TMP_Text>().text);
+                    answerButton.transform.GetChild(0).GetComponent<Text>().text);
             });
         }
 
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour
     private void OnAnswerButton(Button button, string answer)
     {
         EndQuestion();
-        if (answer == _currentQuestions[_currentQuestion].Answer)
+        if (answer == _translationsManager.GetPhrase(_currentQuestions[_currentQuestion].PhraseKey))
         {
             _score++;
             _canvasDataManager.UpdatePlayerMaxScore(_score);
@@ -217,7 +219,8 @@ public class GameManager : MonoBehaviour
         {
             _gameImage.texture = texture2D;
 
-            var answers = GetRandomAnswers(question.Answer);
+            var answers = GetRandomAnswers(question.PhraseKey);
+            Debug.Log("TRUE: " + question.PhraseKey);
             for (int i = 0; i < _answerButtons.Length; i++)
             {
                 SetButtonText(_answerButtons[i], answers[i]);
@@ -279,18 +282,18 @@ public class GameManager : MonoBehaviour
         {
             if (i == answerPosition)
             {
-                randomNames.Add(currentAnswer);
+                randomNames.Add(_translationsManager.GetPhrase(currentAnswer));
                 continue;
             }
 
-            var characterName = _currentQuestions[Random.Range(0, _currentQuestions.Count)].Answer;
+            var characterName = _currentQuestions[Random.Range(0, _currentQuestions.Count)].PhraseKey;
             if (randomNames.Contains(characterName) || characterName == currentAnswer)
             {
                 i--;
                 continue;
             }
 
-            randomNames.Add(characterName);
+            randomNames.Add(_translationsManager.GetPhrase(characterName));
         }
 
         return randomNames;
@@ -318,7 +321,7 @@ public class GameManager : MonoBehaviour
 
     private void SetButtonText(Button button, string text)
     {
-        button.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+        button.transform.GetChild(0).GetComponent<Text>().text = text;
     }
 
     private void SetHeart(int id)
