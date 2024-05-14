@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JsonModels;
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private RawImage _gameImage;
 
+    [SerializeField] private Vector3 _gameImageStartPosition;
+
     private Dictionary<int, List<Question>> _allQuestions;
     private List<Question> _currentQuestions;
 
@@ -50,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _gameImageStartPosition = _gameImage.transform.localPosition;
+        Debug.Log("POSS: " + _gameImageStartPosition);
         _allQuestions = new Dictionary<int, List<Question>>();
 
         var questionsJson = Resources.Load<TextAsset>(@"Data/questions");
@@ -81,7 +86,10 @@ public class GameManager : MonoBehaviour
         _buttonsHandler.AddHandler("StartButton",
             (button, canvas) => { OnStartButton(_backgroundsSwitcher.SelectedGame); });
 
-        _buttonsHandler.AddHandler("BackButton", (button, canvas) => { OnBackButton(); });
+        _buttonsHandler.AddHandler("BackButton", (button, canvas) =>
+        {
+            OnBackButton();
+        });
 
         _buttonsHandler.AddHandler("RestartButton", (button, canvas) => { OnRestartButton(); });
 
@@ -109,10 +117,11 @@ public class GameManager : MonoBehaviour
             UpdateHeartImage();
         }
     }
-
+    
 
     private void OnStartButton(int gameId)
     {
+
         YandexGame.FullscreenShow();
         ResetGameState(-1);
 
@@ -129,6 +138,9 @@ public class GameManager : MonoBehaviour
 
     private void OnBackButton()
     {
+        _gameImage.transform.localPosition = _gameImageStartPosition;
+        _gameImage.transform.localScale = new Vector3(1.35f, 1.35f, 1.35f);
+        
         YandexGame.FullscreenShow();
     }
 
