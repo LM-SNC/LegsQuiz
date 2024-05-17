@@ -262,12 +262,13 @@ public class GameManager : MonoBehaviour
     private void StartTimer()
     {
         _timeBarAnimator.speed = 1;
+        _timeBarAnimator.Rebind();
         _timeBarAnimator.SetTrigger("start");
     }
 
     private void StopTimer()
     {
-        _timeBarAnimator.SetTrigger("stop");
+        //_timeBarAnimator.SetTrigger("stop");
         _timeBarAnimator.speed = 0;
     }
 
