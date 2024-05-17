@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _hearts;
 
     [SerializeField] private GameObject _defeatMenu;
+    [SerializeField] private GameObject _defeatMenuResumeButton;
     [SerializeField] private GameObject _winMenu;
 
     [SerializeField] private RawImage _gameImage;
@@ -86,10 +87,7 @@ public class GameManager : MonoBehaviour
         _buttonsHandler.AddHandler("StartButton",
             (button, canvas) => { OnStartButton(_backgroundsSwitcher.SelectedGame); });
 
-        _buttonsHandler.AddHandler("BackButton", (button, canvas) =>
-        {
-            OnBackButton();
-        });
+        _buttonsHandler.AddHandler("BackButton", (button, canvas) => { OnBackButton(); });
 
         _buttonsHandler.AddHandler("RestartButton", (button, canvas) => { OnRestartButton(); });
 
@@ -117,11 +115,10 @@ public class GameManager : MonoBehaviour
             UpdateHeartImage();
         }
     }
-    
+
 
     private void OnStartButton(int gameId)
     {
-
         YandexGame.FullscreenShow();
         ResetGameState(-1);
 
@@ -140,7 +137,7 @@ public class GameManager : MonoBehaviour
     {
         _gameImage.transform.localPosition = _gameImageStartPosition;
         _gameImage.transform.localScale = new Vector3(1.35f, 1.35f, 1.35f);
-        
+
         YandexGame.FullscreenShow();
     }
 
@@ -187,6 +184,8 @@ public class GameManager : MonoBehaviour
                 _defeatMenu.transform.Find("Score").GetComponent<TMP_Text>()
                     .SetText($"{_translationsManager.GetPhrase("legs")}{_score}");
                 _defeatMenu.SetActive(true);
+
+                _defeatMenuResumeButton.SetActive(_score >= 1);
             }
             else
             {
@@ -299,13 +298,15 @@ public class GameManager : MonoBehaviour
             }
 
             var characterName = _currentQuestions[Random.Range(0, _currentQuestions.Count)].PhraseKey;
-            if (randomNames.Contains(characterName) || characterName == currentAnswer)
+            var translatedAnswer = _translationsManager.GetPhrase(characterName);
+
+            if (randomNames.Contains(translatedAnswer) || characterName == currentAnswer)
             {
                 i--;
                 continue;
             }
 
-            randomNames.Add(_translationsManager.GetPhrase(characterName));
+            randomNames.Add(translatedAnswer);
         }
 
         return randomNames;
