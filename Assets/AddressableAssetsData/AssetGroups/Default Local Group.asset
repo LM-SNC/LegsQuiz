@@ -642,6 +642,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d26fdd006ebc20942914d112b3a96175
+    m_Address: Images/characters/gensh/Arlecchino
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac1fb238a6f42934291c3b4f253c0407
+    m_Address: Images/characters/gensh/RaidenShogun3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ed430f040e96dd4a95aeb5e2d427e07
+    m_Address: Images/characters/gensh/YaeMiko3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d94639602fde2b840af95b8ab8a8c3b4, type: 2}
   m_SchemaSet:

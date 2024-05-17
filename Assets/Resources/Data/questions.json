@@ -1,5 +1,29 @@
 {"Value":[
   {
+    "Id": 1,
+    "GameId": 0,
+    "Text": "none",
+    "Image": "Images/characters/gensh/Arlecchino",
+    "PhraseKey": "Arlecchino",
+    "AnswerRu": "Арлекино"
+  },
+  {
+    "Id": 2,
+    "GameId": 0,
+    "Text": "none",
+    "Image": "Images/characters/gensh/RaidenShogun3",
+    "PhraseKey": "Raiden Shogun",
+    "AnswerRu": "Сёгун Райдэн"
+  },
+  {
+    "Id": 3,
+    "GameId": 0,
+    "Text": "none",
+    "Image": "Images/characters/gensh/YaeMiko3",
+    "PhraseKey": "Yae Miko",
+    "AnswerRu": "Яэ Мико"
+  },
+  {
     "Id": 4,
     "GameId": 0,
     "Text": "none",
