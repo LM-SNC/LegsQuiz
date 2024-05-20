@@ -49,7 +49,7 @@ public class CanvasDataManager : MonoBehaviour
             {
                 
                 var tableElement = Instantiate(template, _table.transform);
-                tableElement.transform.GetChild(0).GetComponent<Text>().text = lbPlayerData.name;
+                tableElement.transform.GetChild(0).GetComponent<TMP_Text>().SetText(lbPlayerData.name);
                 tableElement.transform.GetChild(1).GetComponent<TMP_Text>().SetText(lbPlayerData.score.ToString());
                 tableElement.gameObject.SetActive(true);
             }

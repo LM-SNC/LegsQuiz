@@ -1,2 +1,2 @@
 Build path: Q:/UnityProjects/LegsQuiz/build
-Build number: 70
+Build number: 72
